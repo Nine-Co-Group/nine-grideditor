@@ -1,6 +1,11 @@
 import { getId } from "../../../lib/getId";
 import { DimensionType } from "../../../types";
-import { AreaType, AreaContentDefinitionType } from "../../area";
+import {
+  AreaType,
+  AreaContentDefinitionType,
+  MediaDataType,
+  AreaContentType,
+} from "../../area";
 import {
   create as areaCreate,
   isEmpty as areaIsEmpty,
@@ -20,7 +25,9 @@ const widthAreaAdjusted = (area: AreaType): number | null => {
   if (!area) return null;
 
   //Find first area type with dimensions set
-  const contentsWithWidth = area.contents.find((x) => !!x.data.width);
+  const contentsWithWidth = (
+    area.contents as AreaContentType<MediaDataType>[]
+  ).find((x) => !!x.data.width);
 
   if (!contentsWithWidth || !contentsWithWidth.data) return null;
 
@@ -37,9 +44,9 @@ const heightAreaAdjusted = (area: AreaType, margin: number): number | null => {
   if (!area) return null;
 
   //Find first area type with dimensions set
-  const contentsWithDimensions = area.contents.find(
-    (x) => !!x.data?.width && !!x.data?.height
-  );
+  const contentsWithDimensions = (
+    area.contents as AreaContentType<MediaDataType>[]
+  ).find((x) => !!x.data?.width && !!x.data?.height);
 
   if (!contentsWithDimensions || !contentsWithDimensions.data) return null;
 
@@ -196,8 +203,7 @@ export const hasAutoHeightOnly = (
       areaGetTypes(area.contents).some((name) => {
         const type = areaTypes.find((x) => x.type === name);
 
-        if (type) return area.contents.some((y) => type.isAutoHeight !== true);
-        return false;
+        return type?.isAutoHeight !== true;
       })
   );
 };

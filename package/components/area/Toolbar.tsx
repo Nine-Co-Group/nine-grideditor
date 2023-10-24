@@ -6,12 +6,7 @@ import "./Toolbar.scss";
 import { Tool } from "../ui/Tool";
 import { Icon } from "../ui/Icon";
 import { DimensionType } from "../../types";
-import {
-  AreaAndMetaType,
-  AreaContentType,
-  AreaContentTypeProp,
-  AreaType,
-} from "./types";
+import { AreaAndMetaType, AreaContentTypeProp, AreaType } from "./types";
 import { AreaMeta } from "../section/types";
 
 type Props = {
@@ -99,7 +94,6 @@ const AreaContainer = ({
           onPointerDown={(e: any) => e.preventDefault()} //Prevent text area blur
           type="checkbox"
           checked={showMore}
-          id={`Tool_More_${area.id}`}
         >
           <Icon id="dots-vertical" />{" "}
           <span>
@@ -113,13 +107,13 @@ const AreaContainer = ({
 
 export default AreaContainer;
 
-type ToolbarProps = {
+type TypeToolbarProps = {
   areaTypes: AreaContentTypeProp<any>[];
   type: string;
   areaId: number;
   areaWidthHeightRatioContent?: number;
   areaMeta: AreaMeta;
-  data: AreaContentType<any>;
+  data: any;
   onChange(type: string, dataChunk: any): void;
   onSectionDimensionChange(dimensions: DimensionType): void;
 };
@@ -133,7 +127,7 @@ const TypeToolbar = ({
   data,
   onChange: _onChange,
   onSectionDimensionChange,
-}: ToolbarProps) => {
+}: TypeToolbarProps) => {
   const componentType = useMemo(
     () => areaTypes.find((y) => y.type === type)!,
     [areaTypes, type]

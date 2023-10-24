@@ -16,7 +16,7 @@ export {
   type AreaControlsProps,
   type AreaLabelProps,
   type AreaToolbarProps,
-  type BodyDataType,
+  type TextDataType as BodyDataType,
   type MediaDataType,
   type IncomingContent,
   type EmbedDataType,

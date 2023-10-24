@@ -1,7 +1,12 @@
 import { useState } from "react";
 import classNames from "classnames";
 import { getTypes, addContentType, setContentValue } from "../helpers";
-import { AreaContentTypeProp, AreaType } from "../types";
+import {
+  AreaContentType,
+  AreaContentTypeProp,
+  AreaType,
+  TextDataType,
+} from "../types";
 
 import Remove from "./Remove";
 import { FormattedMessage } from "react-intl";
@@ -28,7 +33,6 @@ type Props = {
 
 const Picker = (props: Props) => {
   const {
-    onChange,
     area,
     className,
     withEmpty,
@@ -38,7 +42,7 @@ const Picker = (props: Props) => {
     children,
     areaTypes,
     childrenLast,
-    ...otherProps
+    "data-visible": dataVisible,
   } = props;
 
   const [showMore, setShowMore] = useState(false);
@@ -59,9 +63,11 @@ const Picker = (props: Props) => {
         (oldContenType === "html" || oldContenType === "text") &&
         (newContentType === "html" || newContentType === "text")
       ) {
-        const oldData = area.contents.find(
-          (x) => x.type === oldCType.type
-        )!.data;
+        const oldData = (
+          area.contents.find(
+            (x) => x.type === oldCType.type
+          )! as AreaContentType<TextDataType>
+        ).data;
 
         if (newContentType === "text" && !!oldData?.src)
           newarea = setContentValue(areaTypes, newarea, type, {
@@ -93,7 +99,7 @@ const Picker = (props: Props) => {
         },
         className
       )}
-      {...otherProps}
+      data-visible={dataVisible}
     >
       {children}
       {!!withEmpty && (

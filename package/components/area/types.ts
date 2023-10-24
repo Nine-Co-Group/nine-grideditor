@@ -1,4 +1,3 @@
-import { TextDataType } from "../../../src/area/text";
 import { DimensionType } from "../../types";
 import { AreaMeta } from "../section/types";
 
@@ -96,9 +95,9 @@ export type AreaToolbarProps<T extends ContentDataTypes> = {
   onSectionDimensionChange(dimensions: DimensionType): void;
 };
 
-type ContentDataTypes = object & TextDataType & MediaDataType & EmbedDataType;
+type ContentDataTypes = object & (TextDataType | MediaDataType | EmbedDataType);
 
-export type BodyDataType = {
+export type TextDataType = {
   src?: string;
 };
 

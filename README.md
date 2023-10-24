@@ -1,8 +1,4 @@
-# React Library Starter
-
-Starter template for your next react typescript library. Complete with changeset, tsup, and tailwind with prettier-plugin. Publish to npm the right and easy way.
-
-## Setup
+# Grideditor
 
 1. Go to npm and create your access token with type of "Publish" or "Automation". Copy the token.
 2. Go to your repo, click on "Settings" => "Secrets and variables" => "Actions" => "New repository secret" then create token named "NPM_TOKEN" and paste token from step 1.
