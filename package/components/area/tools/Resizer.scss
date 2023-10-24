@@ -1,0 +1,100 @@
+.area-resizer {
+  position: absolute;
+  z-index: 6;
+  display: block;
+  width: 24px;
+  height: 24px;
+  line-height: 23px;
+  font-size: 11px;
+  background-color: transparent;
+  color: oklch(var(--grideditor-background-color-oklch)) !important;
+  text-align: center;
+  border: none;
+  padding: 8px;
+
+  > span {
+    display: block;
+    height: 100%;
+    outline: var(--grideditor-border-width) solid
+      oklch(var(--grideditor-border-color-oklch));
+    background-color: oklch(var(--grideditor-background-color-oklch));
+  }
+
+  @media all and (max-width: 735px) {
+    font-size: 8px;
+    width: 20px;
+    height: 20px;
+    line-height: 19px;
+  }
+
+  &.active,
+  &:focus {
+    > span {
+      outline-color: #000;
+      @media (prefers-color-scheme: dark) {
+        outline-color: #fff;
+      }
+    }
+  }
+  @media (pointer: fine) {
+    &:hover {
+      > span {
+        outline-color: #000;
+        @media (prefers-color-scheme: dark) {
+          outline-color: #fff;
+        }
+      }
+    }
+  }
+
+  &.resizeleft {
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    cursor: col-resize;
+  }
+
+  &.resizetop {
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%);
+    cursor: row-resize;
+  }
+
+  &.resizeright {
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    cursor: col-resize;
+  }
+
+  &.resizebottom {
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+    cursor: row-resize;
+  }
+
+  &.resizebottomright {
+    right: 0;
+    bottom: 0;
+    transform: translate(50%, 50%);
+    display: none;
+    font-weight: var(--grideditor-font-weight-bold);
+    cursor: nwse-resize;
+  }
+
+  &.resizebottomleft {
+    left: 0;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+    display: none;
+    font-weight: var(--grideditor-font-weight-bold);
+    cursor: nesw-resize;
+  }
+}
+
+.area.is-top:first-child > .area-controls > .area-resizer.resizebottomleft,
+.area.is-top:last-child > .area-controls > .area-resizer.resizebottomright {
+  display: block;
+}

@@ -1,0 +1,81 @@
+input[type="checkbox"].input-tool,
+input[type="radio"].input-tool {
+  position: absolute;
+  opacity: 0;
+}
+
+.tool {
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  outline: none;
+  background-position: center;
+  background-image: none;
+  overflow: hidden;
+  padding: 0.6rem 1rem;
+  max-width: 100%;
+  cursor: pointer;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  position: relative;
+  color: oklch(var(--grideditor-button-color-oklch));
+  border: var(--border-width) solid
+    oklch(var(--grideditor-button-background-color-oklch));
+  background-color: oklch(var(--grideditor-button-background-color-oklch));
+  border-radius: var(--grideditor-border-radius);
+  font-weight: var(--grideditor-font-weight-bold);
+  font-size: var(--grideditor-font-size-small);
+  font-family: var(--grideditor-font-family);
+  transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
+    border 0.15s ease-in-out, color 0.15s ease-in-out, opacity 0.15s ease-in-out;
+  gap: 0.2rem;
+  display: flex;
+
+  &:hover,
+  &:focus,
+  &.focus {
+    background-color: oklch(
+      var(--grideditor-button-focus-background-color-oklch)
+    );
+    border-color: oklch(var(--grideditor-button-focus-background-color-oklch));
+    color: oklch(var(--grideditor-button-focus-color-oklch));
+  }
+
+  &[disabled],
+  &[readonly],
+  &.disabled,
+  &.readonly {
+    opacity: 0.25;
+  }
+
+  // Pressed or "on" state
+  &:active,
+  &.active {
+    background-color: oklch(
+      var(--grideditor-button-focus-background-color-oklch)
+    );
+    border-color: oklch(var(--grideditor-button-focus-background-color-oklch));
+    color: oklch(var(--grideditor-button-focus-color-oklch));
+  }
+
+  &.checked {
+    background-color: oklch(
+      var(--grideditor-button-focus-background-color-oklch)
+    );
+    border-color: oklch(var(--grideditor-button-focus-background-color-oklch));
+    color: oklch(var(--grideditor-button-focus-color-oklch));
+  }
+
+  &.dropdown {
+    text-align: initial;
+    overflow: visible;
+
+    > span:not(.tooltip):not(.notification-counter),
+    > input {
+      line-height: 1.2em;
+    }
+  }
+}

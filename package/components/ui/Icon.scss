@@ -1,0 +1,47 @@
+button.icon {
+  cursor: pointer;
+}
+.icon {
+  width: 1.3333em;
+  height: 1.3333em;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  background: none;
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
+
+  > svg {
+    display: block;
+    max-height: 100%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &.xl {
+    width: 70px;
+    height: 70px;
+  }
+  &.lg {
+    width: 40px;
+    height: 40px;
+  }
+  &.mmlg {
+    width: 32px;
+    height: 32px;
+  }
+  &.mlg {
+    width: 24px;
+    height: 24px;
+  }
+  &.md {
+    width: 16px;
+    height: 16px;
+  }
+  &.sm {
+    width: 12px;
+    height: 12px;
+  }
+}

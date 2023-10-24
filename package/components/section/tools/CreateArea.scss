@@ -1,0 +1,100 @@
+.section-createarea.section-tool-create.tool {
+  width: calc(100% - calc(1.333em + 0.6rem + 0.6rem));
+  outline: var(--grideditor-border-width) solid
+    oklch(var(--grideditor-border-color-oklch));
+  cursor: text;
+  overflow: visible;
+  text-overflow: ellipsis;
+  // transition: background-image 0.2s linear;
+  color: oklch(var(--grideditor-color-oklch));
+  background-color: oklch(var(--grideditor-background-color-oklch));
+  transition: outline-color 0.2s linear, background-color 0.2s linear;
+  box-shadow: var(--grideditor-inline-shadow);
+
+  &.hidden {
+    display: none;
+  }
+
+  .icon {
+    position: relative;
+
+    > .tooltip {
+      position: absolute;
+      top: 0;
+      left: 50%;
+    }
+  }
+
+  &:focus {
+    outline: 2px solid oklch(var(--grideditor-color-neutral-oklch));
+  }
+
+  @media (pointer: fine) {
+    &:hover,
+    &.hover {
+      outline: 2px solid oklch(var(--grideditor-color-neutral-oklch));
+    }
+  }
+
+  &:not(:last-child) {
+    display: none;
+  }
+  @media (pointer: fine) {
+    &:not(:last-child) {
+      display: block;
+      z-index: 5;
+      translate: 0 -50%;
+      left: 0;
+      position: absolute;
+      box-shadow: var(--grideditor-inline-shadow);
+      opacity: 0;
+
+      @media (pointer: fine) {
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &:last-child:not(:first-child) {
+    opacity: 1;
+  }
+
+  &.dropping {
+    background-color: oklch(var(--grideditor-color-neutral-oklch)) !important;
+
+    > * {
+      opacity: 0.5;
+    }
+  }
+
+  &.loading {
+    &::before {
+      transition: all 0.15s ease-in-out;
+      content: " ";
+      vertical-align: middle;
+      display: inline-block;
+      height: 2em;
+      width: 2em;
+      translate: -50% -50%;
+      border-radius: 100%;
+      border: 2px solid oklch(var(--grideditor-color-oklch));
+      border-bottom-color: transparent;
+      -webkit-animation: grideditor-loader-spin 1s linear infinite;
+      animation: grideditor-loader-spin 1s linear infinite;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 1;
+    }
+
+    > span {
+      opacity: 0;
+    }
+  }
+}
+
+.grideditor-content > .section.is-empty + .section-inserter.tool {
+  display: none;
+}

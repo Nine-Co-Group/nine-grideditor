@@ -1,0 +1,135 @@
+.popup.code {
+  > div > .popup-container {
+    .input-label {
+      display: none;
+    }
+
+    .input-control {
+      font-family: "Courier New", Courier, monospace;
+    }
+  }
+}
+
+.area-controls {
+  width: 0;
+  height: 0;
+  font: var(--grideditor-font-base);
+  [disabled] {
+    display: none;
+  }
+
+  > *:not(.tools) {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  > .tool {
+    background-color: oklch(var(--grideditor-background-color-oklch) / 75%);
+    box-shadow: var(--grideditor-inline-shadow);
+    backdrop-filter: blur(4px);
+    color: oklch(var(--grideditor-color-oklch));
+
+    &.tool-remove {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      z-index: 5;
+      padding: 0.6rem;
+      border-radius: 100%;
+      border: none;
+
+      .icon + span {
+        display: none;
+      }
+    }
+  }
+  .area-tool-picker {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 6;
+    width: 100%;
+    transform: translateY(-50%);
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    padding: 1rem;
+    margin: 0;
+    gap: 0.2rem;
+
+    > li {
+      &:not(.more) {
+        .icon {
+          display: none;
+        }
+      }
+      &.media {
+        display: none;
+      }
+    }
+  }
+}
+
+.area.typing > .area-controls {
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+}
+
+@media all and (max-width: 1100px) {
+  .area.left:not(.right) {
+    .area-controls {
+      .area-tool-picker.open {
+        left: 0;
+        transform: translateX(0);
+      }
+    }
+  }
+  .area.right:not(.left) {
+    .area-controls {
+      .area-tool-picker.open {
+        right: 0;
+        left: auto;
+        transform: translateX(0);
+      }
+    }
+  }
+}
+
+@media (pointer: fine) {
+  .section-content:not(.resizing) .area:hover {
+    .area-controls {
+      > *:not(.area-tool-picker) {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.area {
+  &.active,
+  &.resizing {
+    .area-controls {
+      > * {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.area.resizing {
+  .area-controls {
+    > .area-tool-picker {
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+}

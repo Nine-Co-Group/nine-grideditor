@@ -1,0 +1,42 @@
+.grid-content.section {
+  display: flex;
+  > .section-content {
+    flex-grow: 1;
+    position: relative;
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: flex;
+
+    &.is-auto-height {
+      display: flex;
+      padding-top: 0 !important;
+
+      > .area {
+        flex-grow: 0;
+        flex-shrink: 0;
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        align-items: stretch;
+        height: auto !important;
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+      }
+
+      .area-resizer {
+        &.resizebottom,
+        &.resizebottomleft,
+        &.resizebottomright {
+          display: none !important;
+        }
+      }
+    }
+  }
+
+  &.editable {
+    > .section-content {
+      min-width: 1rem;
+      min-height: 1rem;
+    }
+  }
+}

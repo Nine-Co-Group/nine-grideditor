@@ -1,0 +1,26 @@
+.tool-dragmover {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 4;
+  width: 100%;
+  text-align: center;
+  height: 0;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+
+  .tool {
+    transform: translateY(-50%);
+    white-space: nowrap;
+    margin: 0 auto;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media (pointer: coarse) {
+    display: none;
+  }
+}

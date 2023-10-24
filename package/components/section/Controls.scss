@@ -1,0 +1,85 @@
+.section {
+  @media (pointer: fine) {
+    &:hover {
+      .section-controls {
+        visibility: visible;
+        opacity: 1;
+        height: auto;
+      }
+    }
+  }
+  &.active {
+    .section-controls {
+      visibility: visible;
+      opacity: 1;
+      height: auto;
+    }
+  }
+}
+
+.section:first-of-type {
+  .section-controls > .section-tool-mover.up {
+    display: none;
+  }
+}
+.section:last-of-type {
+  .section-controls > .section-tool-mover.down {
+    display: none;
+  }
+}
+
+.grideditor-content div.section.active > .section-controls {
+  opacity: 1;
+  visibility: visible;
+  overflow: visible;
+}
+
+.section-controls {
+  transition: opacity 0.2s linear;
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+
+  transition: opacity 0.2s ease-in-out;
+  max-height: 100%;
+
+  > .tool {
+    background-color: transparent;
+
+    border-width: 0;
+    background: none;
+    padding-right: 0.6rem;
+    padding-left: 0.6rem;
+    // text-align: center;
+    color: oklch(var(--grideditor-color-oklch));
+
+    &:hover,
+    &:focus {
+      color: oklch(var(--grideditor-color-oklch));
+    }
+
+    > .icon + span {
+      display: none;
+    }
+  }
+  > .dropdown {
+    > .dropdown-container {
+      .section-tool-picker {
+        padding: 1rem 1rem 0.5rem;
+        width: 25rem;
+      }
+
+      > .tool {
+        padding: 1rem;
+        background: none;
+        color: oklch(var(--grideditor-color-oklch));
+        font: var(--grideditor-font-base);
+        text-transform: none;
+
+        &.remove {
+          color: oklch(var(--grideditor-color-bad-oklch));
+        }
+      }
+    }
+  }
+}

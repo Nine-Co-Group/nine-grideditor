@@ -1,0 +1,124 @@
+@mixin visibleHideCss($property) {
+  &[data-visible="#{$property}"].has-overflow {
+    > div,
+    > span,
+    > input,
+    > label,
+    > button {
+      &:nth-child(#{$property}) {
+        ~ div,
+        ~ span,
+        ~ input,
+        ~ label,
+        ~ button {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.tools-area {
+  display: flex;
+  > .picker-dropdown {
+    background-color: transparent;
+    flex-shrink: 0;
+
+    @media all and (max-width: 735px) {
+      display: none;
+    }
+  }
+
+  > .tools {
+    flex-grow: 1;
+    display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+
+    > .tool {
+      flex-shrink: 0;
+    }
+  }
+
+  > .more {
+    flex-shrink: 0;
+    max-width: 3.5rem;
+
+    > .icon {
+      margin-right: 1.5rem;
+    }
+  }
+
+  .tools-area-type {
+    &.measure {
+      position: relative;
+      white-space: nowrap;
+      overflow: visible;
+      flex-wrap: nowrap;
+      min-width: 0;
+      input[type="checkbox"].input-tool,
+      input[type="radio"].input-tool {
+        left: auto;
+      }
+    }
+    ~ .tool.more {
+      display: none;
+    }
+    &.has-overflow ~ .tool.more {
+      display: block;
+    }
+  }
+  @media all and (max-width: 735px) {
+    .tool.dropdown > span,
+    .tool {
+      > .icon + span {
+        display: none;
+      }
+    }
+  }
+
+  &:not(.expanded) {
+    .tools-area-type {
+      @include visibleHideCss(1);
+      @include visibleHideCss(2);
+      @include visibleHideCss(3);
+      @include visibleHideCss(4);
+      @include visibleHideCss(5);
+      @include visibleHideCss(6);
+      @include visibleHideCss(7);
+      @include visibleHideCss(8);
+      @include visibleHideCss(9);
+      @include visibleHideCss(10);
+      @include visibleHideCss(11);
+      @include visibleHideCss(12);
+      @include visibleHideCss(13);
+      @include visibleHideCss(14);
+      @include visibleHideCss(15);
+      @include visibleHideCss(16);
+      @include visibleHideCss(17);
+      @include visibleHideCss(18);
+      @include visibleHideCss(19);
+      @include visibleHideCss(20);
+      @include visibleHideCss(21);
+      @include visibleHideCss(22);
+      @include visibleHideCss(23);
+      @include visibleHideCss(24);
+      @include visibleHideCss(25);
+      @include visibleHideCss(26);
+      @include visibleHideCss(27);
+      @include visibleHideCss(28);
+      @include visibleHideCss(29);
+      @include visibleHideCss(30);
+      @include visibleHideCss(31);
+      @include visibleHideCss(32);
+      @include visibleHideCss(33);
+      @include visibleHideCss(34);
+      @include visibleHideCss(35);
+      @include visibleHideCss(36);
+      @include visibleHideCss(37);
+      @include visibleHideCss(38);
+      @include visibleHideCss(39);
+      @include visibleHideCss(40);
+    }
+  }
+}

@@ -1,0 +1,108 @@
+.popup {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1050; // Above back button
+  background: oklch(var(--grideditor-background-color-oklch) / 70%);
+  overflow: auto;
+  transition: opacity var(--grideditor-transition-style),
+    transform var(--grideditor-transition-style);
+  transition-duration: var(--grideditor-transition-duration);
+  box-sizing: border-box;
+  padding-top: 1px; /* maxes container margin pad */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+
+  &.hidden {
+    &:not(.transition) {
+      visibility: hidden;
+      transform: scale(120%);
+    }
+    opacity: 0;
+  }
+
+  &.hidden.transition > div {
+    transform: scale(90%);
+  }
+  > div {
+    transition: transform var(--grideditor-transition-style);
+    transition-duration: var(--grideditor-transition-duration);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 1rem !important;
+
+    > .popup-container {
+      max-width: 100%;
+      text-align: initial;
+      margin-top: auto;
+      margin-bottom: auto;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      color: oklch(var(--grideditor-modal-color-oklch));
+      background-color: oklch(var(--grideditor-modal-background-color-oklch));
+      border-radius: var(--grideditor-border-radius);
+      box-shadow: var(--grideditor-shadow);
+      padding: 1rem;
+      gap: 1rem;
+
+      > .header,
+      > .main,
+      > .bottom {
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      > .header {
+        font-size: 1.6rem;
+      }
+
+      > .bottom {
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  &.loading .popup-container {
+    min-height: 3rem;
+    position: relative;
+    &::before {
+      transition: all var(--grideditor-transition-style);
+      content: " ";
+      vertical-align: middle;
+      display: inline-block;
+      height: 2em;
+      width: 2em;
+      translate: -50% -50%;
+      border-radius: 100%;
+      border: 2px solid oklch(var(--grideditor-color-oklch));
+      border-bottom-color: transparent;
+      -webkit-animation: grideditor-loader-spin 1s linear infinite;
+      animation: grideditor-loader-spin 1s linear infinite;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 1;
+    }
+    > div {
+      opacity: 0;
+      min-width: 8rem;
+    }
+  }
+}

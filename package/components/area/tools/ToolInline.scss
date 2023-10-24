@@ -1,0 +1,21 @@
+.inline-tool {
+  position: fixed;
+  z-index: 6; // Above area create
+  box-shadow: var(--grideditor-shadow);
+  border-radius: var(--grideditor-border-radius);
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: oklch(var(--grideditor-background-color-oklch));
+
+  .button-group {
+    > .tool:not(:first-of-type) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    > .tool:not(:last-of-type) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}

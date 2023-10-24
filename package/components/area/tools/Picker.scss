@@ -1,0 +1,38 @@
+@mixin visibleHideCss($property) {
+  &[data-visible='#{$property}'] {
+    > li:nth-child(#{$property}) {
+      ~ li:not(.more) {
+        display: none;
+      }
+    }
+  }
+}
+
+.area-tool-picker {
+  list-style: none;
+  display: inline-block;
+  // white-space: nowrap;
+
+  &.expandable {
+    &:not(.open) {
+      @include visibleHideCss(1);
+      @include visibleHideCss(2);
+      @include visibleHideCss(3);
+      @include visibleHideCss(4);
+      @include visibleHideCss(5);
+      @include visibleHideCss(6);
+      @include visibleHideCss(7);
+      @include visibleHideCss(8);
+      @include visibleHideCss(9);
+      @include visibleHideCss(10);
+    }
+
+    .more > .tool > span:last-child:not(:first-child):not(.icon) {
+      display: none;
+    }
+
+    &.open > .more {
+      display: none;
+    }
+  }
+}

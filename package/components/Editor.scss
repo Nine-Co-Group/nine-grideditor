@@ -1,0 +1,74 @@
+@keyframes grideditor-loader-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.grideditor {
+  user-select: none;
+  &.loading {
+    min-height: 3rem;
+
+    &::before {
+      content: " ";
+      vertical-align: middle;
+      display: inline-block;
+      height: 2em;
+      width: 2em;
+      translate: -50% -50%;
+      border-radius: 100%;
+      border: 2px solid oklch(var(--grideditor-color-oklch));
+      border-bottom-color: transparent;
+      animation: grideditor-loader-spin 1s linear infinite;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 1;
+    }
+
+    > * {
+      opacity: 0;
+    }
+  }
+
+  &.invalid > .grideditor-content {
+    > .section > .section-content > .area > .area-content,
+    > .section-createarea.section-tool-create.tool:first-child:last-child {
+      outline: var(--grideditor-border-width) solid
+        oklch(var(--grideditor-bad-color-oklch));
+    }
+  }
+
+  > .grideditor-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    &.dragging {
+      > .section > .section-content > .area * {
+        pointer-events: none;
+      }
+    }
+    &.resizing {
+      * {
+        pointer-events: none;
+      }
+    }
+
+    > .tool.section-tool-create:first-child:last-child,
+    > .grideditor-toolbar:first-child + .tool.section-tool-create:last-child {
+      aspect-ratio: 16/9;
+      position: relative;
+    }
+  }
+
+  &.toolbar-has-focus {
+    > .grideditor-content {
+      > .section > .section-content > .area.editable > .area-controls {
+        .tool-dragmover {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

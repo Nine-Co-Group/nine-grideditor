@@ -1,0 +1,59 @@
+:root {
+  --grideditor-color-theme-oklch: 54.57% 0.08 194.03;
+  --grideditor-color-theme2-oklch: 44.36% 0.063 194.09;
+
+  --grideditor-font-family: system-ui, "Segoe UI", Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  --grideditor-font-base: 300 12px/1.5 var(--grideditor-font-family);
+  --grideditor-font-weight-bold: 600;
+  --grideditor-font-size-small: 10px;
+
+  --grideditor-color-good-oklch: 61.18% 0.147 143.24;
+  --grideditor-color-good-dark-oklch: 51.18% 0.147 143.24;
+  --grideditor-color-good-bright-oklch: 71.18% 0.147 143.24;
+  --grideditor-color-neutral-oklch: 79.78% 0.153 79.82;
+  --grideditor-color-neutral-dark-oklch: 64.49% 0.122 79.92;
+  --grideditor-color-neutral-bright-oklch: 84.49% 0.122 79.92;
+  --grideditor-color-bad-oklch: 64.9% 0.256 10.76;
+  --grideditor-color-bad-dark-oklch: 54.9% 0.256 10.76;
+  --grideditor-color-bad-bright-oklch: 74.9% 0.256 10.76;
+
+  --grideditor-color-dark-oklch: 21.43% 0.012 235.73;
+  --grideditor-color-bright-oklch: 98.84% 0.001 286.37;
+
+  --grideditor-transition-duration: 0.25s;
+  --grideditor-transition-style: var(--transition-duration) ease-in-out;
+
+  --grideditor-shadow-color-oklch: 15.39% 0.028 245.26;
+  --grideditor-shadow: 0px 6px 1.5rem 4px
+    oklch(var(--grideditor-shadow-color-oklch) / 10%);
+  --grideditor-inline-shadow: 0px 6px 1.5rem 4px
+    oklch(var(--grideditor-shadow-color-oklch) / 10%);
+
+  --grideditor-border-radius: 1rem;
+
+  --grideditor-color-oklch: var(--grideditor-color-dark-oklch);
+  --grideditor-background-color-oklch: var(--grideditor-color-bright-oklch);
+
+  --grideditor-modal-color-oklch: var(--grideditor-color-oklch);
+  --grideditor-modal-background-color-oklch: var(
+    --grideditor-background-color-oklch
+  );
+
+  --grideditor-button-color-oklch: var(--grideditor-color-bright-oklch);
+  --grideditor-button-background-color-oklch: var(
+    --grideditor-color-theme-oklch
+  );
+  --grideditor-button-focus-color-oklch: var(--grideditor-color-bright-oklch);
+  --grideditor-button-focus-background-color-oklch: var(
+    --grideditor-color-theme2-oklch
+  );
+
+  --grideditor-border-width: 0.5px;
+  --grideditor-border-color-oklch: 71.45% 0.007 207.99;
+}
+
+html,
+body {
+  font: var(--grideditor-font-base);
+}
