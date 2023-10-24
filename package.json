@@ -1,8 +1,8 @@
 {
-  "name": "grideditor-core",
+  "name": "@nine-co/grideditor-core",
   "license": "GPL-3.0",
-  "version": "0.0.1",
-  "description": "The editor.",
+  "version": "0.0.2",
+  "description": "Block style post editor.",
   "author": "George",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
