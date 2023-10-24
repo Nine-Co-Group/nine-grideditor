@@ -13,39 +13,21 @@
     overflow: visible;
 
     &.active,
-    &.checked {
-      background-color: transparent;
-      border-color: transparent;
-
-      .area-icon {
-        background-color: oklch(var(--grideditor-color-oklch));
-      }
-    }
-
+    &.checked,
     &:focus,
-     &.focus  //label after input
-    {
+    &.focus {
       background-color: transparent;
       border-color: transparent;
 
       .area-icon {
         background-color: oklch(var(--grideditor-color-oklch));
       }
-    }
+      background-color: transparent;
+      border-color: transparent;
 
-    @media (pointer: fine) {
-      &:hover {
-        background-color: transparent;
-        border-color: transparent;
-
-        .area-icon {
-          background-color: oklch(var(--grideditor-color-oklch));
-        }
+      .area-icon {
+        background-color: oklch(var(--grideditor-color-oklch));
       }
-    }
-
-    &[disabled] {
-      display: none;
     }
 
     .section-content {
@@ -68,6 +50,16 @@
       &.is-top {
         position: absolute;
         top: 0;
+      }
+    }
+  }
+}
+
+@media (hover: hover) {
+  .section-tool-picker {
+    .tool.section:hover {
+      .area-icon {
+        background-color: oklch(var(--grideditor-color-oklch));
       }
     }
   }

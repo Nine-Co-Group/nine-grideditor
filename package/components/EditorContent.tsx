@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 
-import "./Editor.scss";
 import { useDebouncedCallback } from "use-debounce";
 import Section, {
   Controls,

@@ -2,9 +2,9 @@ import { useMemo } from "react";
 import classNames from "classnames";
 import { Tool as Button } from "../../ui/Tool";
 import { create as createSection } from "../helpers";
-
-import "./Picker.scss";
 import { SectionDefinitionNamed, SectionType } from "../types";
+
+import "./Picker.css";
 
 const SectionPicker = ({
   className,

@@ -2,8 +2,6 @@ import classNames from "classnames";
 import { FormattedMessage } from "react-intl";
 
 import { Icon } from "../../ui/Icon";
-
-import "./Mover.scss";
 import { Tool } from "../../ui/Tool";
 import { SectionType } from "../types";
 

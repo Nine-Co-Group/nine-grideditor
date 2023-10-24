@@ -14,7 +14,7 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "typecheck": "tsc",
-    "build-package": "tsup package/index.tsx --format cjs,esm --dts",
+    "build-package": "tsup package/index.tsx --format esm --dts",
     "release": "pnpm run build-package && changeset publish"
   },
   "peerDependencies": {
@@ -45,7 +45,8 @@
     "sass": "^1.69.4",
     "tsup": "^6.7.0",
     "typescript": "^5.0.2",
-    "vite": "^4.3.9"
+    "vite": "^4.3.9",
+    "postcss-nesting": "^12.0.0"
   },
   "repository": {
     "type": "git",

@@ -11,7 +11,7 @@ import {
 import Remove from "./Remove";
 import { FormattedMessage } from "react-intl";
 
-import "./Picker.scss";
+import "./Picker.css";
 import { Tool } from "../../ui/Tool";
 import { Icon } from "../../ui/Icon";
 import AreaCreate from "./Create";

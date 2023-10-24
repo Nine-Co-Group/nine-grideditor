@@ -1,5 +1,4 @@
 export { default } from "./Section";
-export { default as Toolbar } from "./Toolbar";
 export { default as Controls } from "./Controls";
 export {
   getTypeAreaMetas,

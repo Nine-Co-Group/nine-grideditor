@@ -1,8 +1,7 @@
-import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
 import classNames from "classnames";
 
-import Toolbar from "./Toolbar";
 import EditorContent from "./EditorContent";
 
 import {
@@ -28,16 +27,13 @@ import { getTopParent } from "../lib/dom";
 import { MARGIN_DEFAULT, parseUnknown } from "../lib/data";
 import { useDebouncedCallback } from "use-debounce";
 
-import "./Editor.scss";
+import "./Editor.css";
 
 export type EditorProps = {
   value: SectionType[];
   margin?: number;
   onChange(value: SectionType[]): void;
-  toolbarParentElem?: HTMLElement;
   className?: string;
-  toolbarClassName?: string;
-  toolbarOffset?: number;
   name?: string;
   required?: boolean;
 };
@@ -122,9 +118,6 @@ export const GridEditor = ({
   onChange: _onChange,
   className,
   margin = MARGIN_DEFAULT,
-  toolbarClassName,
-  toolbarParentElem,
-  toolbarOffset = 0,
   sectionTypes,
   areaTypes,
   value,
@@ -144,7 +137,6 @@ export const GridEditor = ({
   const [areasCopied, setAreasCopied] = useState<AreaType[]>([]);
   // const [value, setValues] = useState<string | Section[]>("");
 
-  const [toolbarHasFocus, setToolbarHasFocus] = useState<boolean>(false);
   const [isEmpty, setIsEmpty] = useState<boolean>(true);
   // const [isInvalid, setIsInvalid] = useState<boolean>(false);
   const [interacted, setInteracted] = useState(false);
@@ -152,7 +144,6 @@ export const GridEditor = ({
   const isInvalid = isEmpty && !!required;
 
   const elem = useRef<HTMLDivElement>(null);
-  const toolbarElem = useRef<HTMLDivElement>(null);
 
   const setIsEmptyDebounced = useDebouncedCallback(
     (data: SectionType[]) => setIsEmpty(!data.some((x) => !sectionIsEmpty(x))),
@@ -186,15 +177,6 @@ export const GridEditor = ({
       isEqualValues(x, newAreasActive) ? x : newAreasActive
     );
   }, []);
-
-  const sectionsActive = useMemo(() => {
-    if (areasActive.length > 0)
-      return value
-        .filter((x) => x.areas.some((y) => areasActive.includes(y.id)))
-        .map((x) => x.id)
-        .sort((x, y) => (x < y ? -1 : 1));
-    return [];
-  }, [value, areasActive]);
 
   const onContentsReceived = useCallback(
     (contents: (IncomingContent | AreaType)[]): SectionType[] => {
@@ -457,14 +439,6 @@ export const GridEditor = ({
       //Nothing to deactivate
       if (areasActive.length === 0) return;
 
-      const noDeactivateElems = [toolbarElem.current];
-
-      for (let i = 0; i < noDeactivateElems.length; i++) {
-        const elem = noDeactivateElems[i];
-
-        if (!!elem && (target === elem || elem.contains(target))) return;
-      }
-
       //Popups, dialogs, tooltips and other things are not in the same dom-tree, don't deactivate
       const topParent = getTopParent(elem.current);
       if (!topParent.contains(target)) return;
@@ -704,14 +678,6 @@ export const GridEditor = ({
     [value, onChange]
   );
 
-  const onToolbarFocus = useCallback(() => {
-    setToolbarHasFocus(true);
-  }, []);
-
-  const onToolbarBlur = () => {
-    setToolbarHasFocus(false);
-  };
-
   // const onInvalid = () => {
   //   setIsInvalid(true);
   // };
@@ -723,27 +689,12 @@ export const GridEditor = ({
         className={classNames(
           "grideditor",
           {
-            "toolbar-has-focus": toolbarHasFocus,
             invalid: !!isInvalid && !!interacted,
             empty: isEmpty,
           },
           className
         )}
       >
-        <Toolbar
-          sections={value}
-          sectionTypes={sectionTypes}
-          sectionsActive={sectionsActive}
-          areasActive={areasActive}
-          onChange={onSectionChangeOrCreate}
-          parentElem={toolbarParentElem}
-          areaTypes={areaTypes}
-          className={toolbarClassName}
-          onFocus={onToolbarFocus}
-          onBlur={onToolbarBlur}
-          ref={toolbarElem}
-          offset={toolbarOffset}
-        />
         <EditorContent
           sectionTypes={sectionTypes}
           sections={value}

@@ -16,8 +16,6 @@ import {
 
 import classNames from "classnames";
 
-import "./Icon.scss";
-
 const icons = {
   add: faPlus,
   "arrow-left": faArrowLeft,
@@ -69,8 +67,29 @@ export const Icon = ({
       className={classNames("icon", size, className, `icon-${id}`, {
         disabled: disabled,
       })}
+      style={{
+        width: "1.3333em",
+        height: "1.3333em",
+        display: "inline-flex",
+        alignItems: "center",
+        verticalAlign: "middle",
+        background: "none",
+        border: "none",
+        padding: "0",
+        flexShrink: "0",
+      }}
     >
-      <FontAwesomeIcon size="7x" icon={faIcon} />
+      <FontAwesomeIcon
+        size="7x"
+        icon={faIcon}
+        style={{
+          display: "block",
+          maxHeight: "100%",
+          width: "100%",
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
+      />
       {children}
     </span>
   );

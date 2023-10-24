@@ -1,6 +1,6 @@
 import Component, { Props as ComponentProps } from "./Component";
 
-import "../ui/Tool.scss";
+import "./Tool.css";
 
 export type ToolProps = ComponentProps;
 

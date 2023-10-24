@@ -118,6 +118,7 @@ const App = () => {
         move: "Move",
         drag_to_reposition: "Drag to reposition",
         press_to_add: "Press to add",
+        are_you_sure: "Are you sure?",
       }}
     >
       {valueIsLoading && "Loading..."}

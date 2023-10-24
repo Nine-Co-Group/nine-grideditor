@@ -8,7 +8,7 @@ import React, {
 import ReactDOM from "react-dom";
 import classNames from "classnames";
 
-import "./Dropdown.scss";
+import "./Dropdown.css";
 
 const hasParentIfHasAnyParents = (
   element: HTMLElement,

@@ -36,16 +36,6 @@
       }
     }
   }
-  @media (pointer: fine) {
-    &:hover {
-      > span {
-        outline-color: #000;
-        @media (prefers-color-scheme: dark) {
-          outline-color: #fff;
-        }
-      }
-    }
-  }
 
   &.resizeleft {
     top: 50%;
@@ -97,4 +87,15 @@
 .area.is-top:first-child > .area-controls > .area-resizer.resizebottomleft,
 .area.is-top:last-child > .area-controls > .area-resizer.resizebottomright {
   display: block;
+}
+
+@media (hover: hover) {
+  .area-resizer:hover {
+    > span {
+      outline-color: #000;
+      @media (prefers-color-scheme: dark) {
+        outline-color: #fff;
+      }
+    }
+  }
 }

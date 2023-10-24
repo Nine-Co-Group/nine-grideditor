@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 import { Icon } from "../../ui/Icon";
 
-import "./DragMover.scss";
+import "./DragMover.css";
 import { getTypes } from "../helpers";
 import { AreaType } from "../types";
 

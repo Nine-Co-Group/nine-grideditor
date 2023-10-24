@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 
-import "./Modal.scss";
+import "./Modal.css";
 
 ReactModal.setAppElement("#root");
 

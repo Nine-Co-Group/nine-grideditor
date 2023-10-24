@@ -3,18 +3,6 @@
   position: relative;
   outline: none;
 
-  //   &.x-resize {
-  //     cursor: col-resize !important;
-  //   }
-
-  //   &.y-resize {
-  //     cursor: row-resize !important;
-  //   }
-
-  //   &.y-resize.x-resize {
-  //     cursor: nwse-resize !important;
-  //   }
-
   &.loading {
     &::before {
       transition: all 0.15s ease-in-out;
@@ -131,7 +119,7 @@
   }
 }
 
-@media (pointer: fine) {
+@media (hover: hover) {
   .section-content:not(.resizing) .area {
     &.editable {
       &:hover {
@@ -143,7 +131,7 @@
   }
 }
 
-//When row only contains auto items, make them relative
+/* //When row only contains auto items, make them relative */
 .section-content.is-auto-height {
   padding-top: 0 !important;
 
@@ -151,5 +139,11 @@
     &.is-top {
       position: relative;
     }
+  }
+}
+
+@media (hover: hover) {
+  .area.editable.is-empty > .area-content:hover {
+    outline-color: oklch(var(--grideditor-color-neutral-oklch));
   }
 }

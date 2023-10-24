@@ -19,8 +19,4 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
-  @media (pointer: coarse) {
-    display: none;
-  }
 }

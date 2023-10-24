@@ -6,7 +6,7 @@ import { dragAndDrop as supportsDragAndDrop } from "../../lib/support";
 import { FormattedMessage } from "react-intl";
 import { DimensionType, CoordinateType } from "../../types";
 import { AreaContentTypeProp, AreaType, IncomingContent } from "./types";
-import { Icon, Modal } from "../ui";
+import { Icon } from "../ui";
 import AreaControls from "./Controls";
 import {
   getTypes,
@@ -16,7 +16,8 @@ import {
   setContentValue,
 } from "./helpers";
 
-import "./Area.scss";
+import "./Area.css";
+import { RemoveConfirm } from "./tools";
 
 type Props = {
   id: string;
@@ -362,7 +363,6 @@ const Area = ({
   return (
     <>
       <RemoveConfirm
-        key="alert"
         isOpen={!!dropData?.length}
         onClose={onDropCancel}
         onOk={onDropOk}
@@ -473,11 +473,3 @@ const Area = ({
 };
 
 export default Area;
-
-const RemoveConfirm = (props: any) => {
-  return (
-    <Modal {...props}>
-      <FormattedMessage id="are_you_sure"></FormattedMessage>
-    </Modal>
-  );
-};

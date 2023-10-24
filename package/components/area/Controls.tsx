@@ -1,16 +1,15 @@
-import { useState } from "react";
 import classNames from "classnames";
 import { useThrottledCallback } from "use-debounce";
 import { FormattedMessage } from "react-intl";
 
 import { Resizer, Picker, DragMover, Remove } from "./tools";
 
-import "./Controls.scss";
+import "./Controls.css";
 import { getTypes, setContentValue } from "./helpers";
 import { AreaContentTypeProp, AreaType } from "./types";
 import { CoordinateType } from "../../types/DimensionType";
 
-import { Icon, Tool, Modal, Input } from "../ui";
+import { Icon, Tool } from "../ui";
 
 const VALID_TYPES = [
   "image/*",
@@ -48,12 +47,7 @@ const AreaControls = ({
   className,
   areaTypes,
   withExpandablePicker,
-  onSomethingReceived,
-  ...otherProps
 }: Props) => {
-  const [codeContent, setcodeContent] = useState("");
-  const [codeModalIsOpen, setcodeModalIsOpen] = useState(false);
-
   const onTypeChange = useThrottledCallback(
     (area: AreaType, type: string, data: any) => {
       const newarea = setContentValue(areaTypes, area, type, data);
@@ -63,50 +57,12 @@ const AreaControls = ({
     25
   );
 
-  const onToggleCode = () => setcodeModalIsOpen((x) => !x);
-
-  const onCodeChange = (e: any) => {
-    const v = e.target.value;
-    setcodeContent(v);
-  };
-
-  const onCodeOk = () => {
-    if (onSomethingReceived) onSomethingReceived([codeContent]);
-    setcodeContent("");
-    setcodeModalIsOpen(false);
-  };
   const types = getTypes(area.contents);
   const hasType = types.length > 0;
 
   return (
     <>
-      <Modal
-        className="code"
-        contentLabel="code modal"
-        isOpen={codeModalIsOpen}
-        onClose={onToggleCode}
-      >
-        <h1 className="header">
-          <FormattedMessage id="embed" />
-        </h1>
-        <div className="main">
-          <Input
-            value={codeContent}
-            onChange={onCodeChange}
-            type="textarea"
-            label={<FormattedMessage id="embed" />}
-          />
-        </div>
-        <div className="bottom">
-          <Tool onClick={onToggleCode}>
-            <FormattedMessage id="cancel" />
-          </Tool>
-          <Tool onClick={onCodeOk}>
-            <FormattedMessage id="ok" />
-          </Tool>
-        </div>
-      </Modal>
-      <div className={classNames("area-controls", className)} {...otherProps}>
+      <div className={classNames("area-controls", className)}>
         <Resizer
           position="left"
           onResizeEnd={onResizeEnd}
@@ -143,15 +99,6 @@ const AreaControls = ({
             withEmpty={false}
             prefix="Controls"
             data-visible={withExpandablePicker ? "2" : undefined}
-            childrenLast={
-              areaTypes.some((x) => x.contentType === "embed") ? (
-                <li className="paste-control">
-                  <Tool onClick={onToggleCode}>
-                    <Icon id="html" /> <FormattedMessage id="embed" />
-                  </Tool>
-                </li>
-              ) : null
-            }
           >
             {!!onFiles && (
               <li className="upload-control">

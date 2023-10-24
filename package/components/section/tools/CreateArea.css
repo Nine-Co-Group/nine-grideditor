@@ -5,7 +5,6 @@
   cursor: text;
   overflow: visible;
   text-overflow: ellipsis;
-  // transition: background-image 0.2s linear;
   color: oklch(var(--grideditor-color-oklch));
   background-color: oklch(var(--grideditor-background-color-oklch));
   transition: outline-color 0.2s linear, background-color 0.2s linear;
@@ -17,44 +16,14 @@
 
   .icon {
     position: relative;
-
-    > .tooltip {
-      position: absolute;
-      top: 0;
-      left: 50%;
-    }
   }
 
   &:focus {
     outline: 2px solid oklch(var(--grideditor-color-neutral-oklch));
   }
 
-  @media (pointer: fine) {
-    &:hover,
-    &.hover {
-      outline: 2px solid oklch(var(--grideditor-color-neutral-oklch));
-    }
-  }
-
   &:not(:last-child) {
     display: none;
-  }
-  @media (pointer: fine) {
-    &:not(:last-child) {
-      display: block;
-      z-index: 5;
-      translate: 0 -50%;
-      left: 0;
-      position: absolute;
-      box-shadow: var(--grideditor-inline-shadow);
-      opacity: 0;
-
-      @media (pointer: fine) {
-        &:hover {
-          opacity: 1;
-        }
-      }
-    }
   }
 
   &:last-child:not(:first-child) {
@@ -97,4 +66,25 @@
 
 .grideditor-content > .section.is-empty + .section-inserter.tool {
   display: none;
+}
+
+@media (hover: hover) {
+  .section-createarea.section-tool-create.tool {
+    &:hover {
+      outline-color: oklch(var(--grideditor-color-neutral-oklch));
+    }
+    &:not(:last-child) {
+      display: block;
+      z-index: 5;
+      position: absolute;
+      left: 0;
+      box-shadow: var(--grideditor-inline-shadow);
+      opacity: 0;
+      margin-top: -0.5rem;
+      margin-bottom: -0.5rem;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
 }

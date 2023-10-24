@@ -4,8 +4,6 @@ import { FormattedMessage } from "react-intl";
 
 import { create as createSection } from "../helpers";
 import Create, { Props as CreateProps } from "./Create";
-
-import "./CreateArea.scss";
 import {
   IncomingArea,
   IncomingContent,
@@ -18,6 +16,8 @@ import {
 } from "../../area";
 import { dragAndDrop as supportsDragAndDrop } from "../../../lib/support";
 import { Icon } from "../../ui/Icon";
+
+import "./CreateArea.css";
 
 const CreateArea = ({
   className,

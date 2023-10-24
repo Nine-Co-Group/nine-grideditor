@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { useThrottledCallback } from "use-debounce";
 import { CoordinateType } from "../../../types";
 
-import "./Resizer.scss";
+import "./Resizer.css";
 
 type Props = {
   onResize(changePx: CoordinateType, position: string): void;

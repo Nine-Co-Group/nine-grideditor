@@ -1,12 +1,12 @@
 import { useCallback } from "react";
 import { FormattedMessage } from "react-intl";
 
-import "./Controls.scss";
-
 import { Picker, Mover, Remove, Create } from "./tools";
 import Dropdown from "../Dropdown";
 import { Icon } from "../ui/Icon";
 import { SectionDefinitionNamed, SectionType } from "./types";
+
+import "./Controls.css";
 
 type Props = {
   section: SectionType;
@@ -40,12 +40,14 @@ const Controls = ({
       <Mover direction="up" section={section} onChange={onSectionChange} />
       <Dropdown className="tool right">
         <Icon id="dots-vertical" />
-        <Picker
-          className="section-sections"
-          section={section}
-          onChange={onChange}
-          sectionTypes={sectionTypes}
-        />
+        {Object.keys(sectionTypes).length > 1 && (
+          <Picker
+            className="section-sections"
+            section={section}
+            onChange={onChange}
+            sectionTypes={sectionTypes}
+          />
+        )}
         <Create
           sectionTypes={sectionTypes}
           onCreate={onCreate}

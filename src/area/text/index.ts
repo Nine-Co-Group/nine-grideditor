@@ -15,4 +15,5 @@ export const textType: AreaContentDefinitionType<TextDataType> = {
   create: () => ({
     src: undefined,
   }),
+  warnOnRemove: (data) => !!data.src,
 };

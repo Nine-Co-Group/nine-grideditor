@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1050; // Above back button
+  z-index: 1050;
   background: oklch(var(--grideditor-background-color-oklch) / 70%);
   overflow: auto;
   transition: opacity var(--grideditor-transition-style),

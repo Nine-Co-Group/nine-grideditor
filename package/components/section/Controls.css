@@ -1,14 +1,14 @@
 .section {
-  @media (pointer: fine) {
-    &:hover {
-      .section-controls {
-        visibility: visible;
-        opacity: 1;
-        height: auto;
-      }
+  &.active {
+    .section-controls {
+      visibility: visible;
+      opacity: 1;
+      height: auto;
     }
   }
-  &.active {
+}
+@media (hover: hover) {
+  .section:hover {
     .section-controls {
       visibility: visible;
       opacity: 1;
@@ -50,7 +50,6 @@
     background: none;
     padding-right: 0.6rem;
     padding-left: 0.6rem;
-    // text-align: center;
     color: oklch(var(--grideditor-color-oklch));
 
     &:hover,

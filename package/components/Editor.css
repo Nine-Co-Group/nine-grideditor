@@ -55,20 +55,9 @@
       }
     }
 
-    > .tool.section-tool-create:first-child:last-child,
-    > .grideditor-toolbar:first-child + .tool.section-tool-create:last-child {
+    > .tool.section-tool-create:first-child:last-child {
       aspect-ratio: 16/9;
       position: relative;
-    }
-  }
-
-  &.toolbar-has-focus {
-    > .grideditor-content {
-      > .section > .section-content > .area.editable > .area-controls {
-        .tool-dragmover {
-          opacity: 0;
-        }
-      }
     }
   }
 }

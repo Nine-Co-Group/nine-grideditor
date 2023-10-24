@@ -1,11 +1,4 @@
 export { default } from "./Area";
-export { default as AreaToolbarContainer, AreaToolbar } from "./Toolbar";
-export {
-  ToolInput,
-  type ToolInputProps,
-  ToolInline,
-  type ToolInlineProps,
-} from "./tools";
 export {
   type AreaType,
   type AreaContentTypeProp,
@@ -15,7 +8,6 @@ export {
   type AreaContentProps,
   type AreaControlsProps,
   type AreaLabelProps,
-  type AreaToolbarProps,
   type TextDataType as BodyDataType,
   type MediaDataType,
   type IncomingContent,

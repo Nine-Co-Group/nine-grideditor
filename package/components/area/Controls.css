@@ -82,33 +82,11 @@
   display: none;
 }
 
-@media all and (max-width: 1100px) {
-  .area.left:not(.right) {
-    .area-controls {
-      .area-tool-picker.open {
-        left: 0;
-        transform: translateX(0);
-      }
-    }
-  }
-  .area.right:not(.left) {
-    .area-controls {
-      .area-tool-picker.open {
-        right: 0;
-        left: auto;
-        transform: translateX(0);
-      }
-    }
-  }
-}
-
-@media (pointer: fine) {
+@media (hover: hover) {
   .section-content:not(.resizing) .area:hover {
-    .area-controls {
-      > *:not(.area-tool-picker) {
-        opacity: 1;
-        visibility: visible;
-      }
+    .area-controls > *:not(.area-tool-picker) {
+      opacity: 1;
+      visibility: visible;
     }
   }
 }

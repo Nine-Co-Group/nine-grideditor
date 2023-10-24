@@ -7,8 +7,6 @@ import {
   calculateRatios as areaCalculateRatios,
   getTypes as areaGetTypes,
 } from "../area";
-
-import "./Section.scss";
 import { DimensionType } from "../../types";
 import { SectionDefinitionNamed, SectionRectRect, SectionType } from "./types";
 import {
@@ -18,6 +16,8 @@ import {
   hasAutoHeightOnly,
   getDimensionsFitToAreas,
 } from "./helpers";
+
+import "./Section.css";
 
 type Props = {
   section: SectionType;

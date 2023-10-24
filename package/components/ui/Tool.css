@@ -34,7 +34,6 @@ input[type="radio"].input-tool {
   gap: 0.2rem;
   display: flex;
 
-  &:hover,
   &:focus,
   &.focus {
     background-color: oklch(
@@ -51,16 +50,8 @@ input[type="radio"].input-tool {
     opacity: 0.25;
   }
 
-  // Pressed or "on" state
   &:active,
-  &.active {
-    background-color: oklch(
-      var(--grideditor-button-focus-background-color-oklch)
-    );
-    border-color: oklch(var(--grideditor-button-focus-background-color-oklch));
-    color: oklch(var(--grideditor-button-focus-color-oklch));
-  }
-
+  &.active,
   &.checked {
     background-color: oklch(
       var(--grideditor-button-focus-background-color-oklch)
@@ -73,9 +64,19 @@ input[type="radio"].input-tool {
     text-align: initial;
     overflow: visible;
 
-    > span:not(.tooltip):not(.notification-counter),
+    > span,
     > input {
       line-height: 1.2em;
     }
+  }
+}
+
+@media (hover: hover) {
+  .tool:hover {
+    background-color: oklch(
+      var(--grideditor-button-focus-background-color-oklch)
+    );
+    border-color: oklch(var(--grideditor-button-focus-background-color-oklch));
+    color: oklch(var(--grideditor-button-focus-color-oklch));
   }
 }

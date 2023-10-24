@@ -1,4 +1,3 @@
-import { DimensionType } from "../../types";
 import { AreaMeta } from "../section/types";
 
 export type AreaType = {
@@ -54,7 +53,6 @@ export type AreaContentTypeProp<T extends ContentDataTypes> =
   AreaContentDefinitionType<T> & {
     label: (props: AreaLabelProps<T>) => React.ReactNode;
     control?: (props: AreaControlsProps<T>) => React.ReactNode;
-    toolbar?: (props: AreaToolbarProps<T>) => React.ReactNode;
     render: (props: AreaContentProps<T>) => JSX.Element;
   };
 
@@ -83,16 +81,6 @@ export type AreaControlsProps<T extends ContentDataTypes> = {
   onRemove(area: AreaType): void;
   data: T;
   area: AreaType;
-};
-
-export type AreaToolbarProps<T extends ContentDataTypes> = {
-  areaId: number;
-  areaWidthHeightRatioContent?: number;
-  className?: string;
-  data: T;
-  onChange(data: T): void;
-  areaMeta: AreaMeta;
-  onSectionDimensionChange(dimensions: DimensionType): void;
 };
 
 type ContentDataTypes = object & (TextDataType | MediaDataType | EmbedDataType);

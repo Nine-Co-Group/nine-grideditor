@@ -10,15 +10,9 @@ export {
   type AreaContentProps,
   type AreaControlsProps,
   type AreaLabelProps,
-  type AreaToolbarProps,
   type BodyDataType,
   type MediaDataType,
   type EmbedDataType,
-  type ToolInputProps,
-  type ToolInlineProps,
-  ToolInput,
-  ToolInline,
-  AreaToolbar,
 } from "./components/area";
 
 export { Tool, type ToolProps } from "./components/ui/Tool";

@@ -1,4 +1,4 @@
-@mixin visibleHideCss($property) {
+/* @mixin visibleHideCss($property) {
   &[data-visible='#{$property}'] {
     > li:nth-child(#{$property}) {
       ~ li:not(.more) {
@@ -6,14 +6,13 @@
       }
     }
   }
-}
+} */
 
 .area-tool-picker {
   list-style: none;
   display: inline-block;
-  // white-space: nowrap;
 
-  &.expandable {
+  /* &.expandable {
     &:not(.open) {
       @include visibleHideCss(1);
       @include visibleHideCss(2);
@@ -34,5 +33,5 @@
     &.open > .more {
       display: none;
     }
-  }
+  } */
 }
