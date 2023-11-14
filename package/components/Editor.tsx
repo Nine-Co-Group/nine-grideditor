@@ -21,11 +21,13 @@ import {
   IncomingContent,
   AreaContentTypeProp,
   AreaType,
+  getTypes,
 } from "./area";
 
 import { getTopParent } from "../lib/dom";
 import { MARGIN_DEFAULT, parseUnknown } from "../lib/data";
 import { useDebouncedCallback } from "use-debounce";
+import { RemoveConfirm } from "./area/tools";
 
 import "./Editor.css";
 
@@ -140,6 +142,7 @@ export const GridEditor = ({
   const [isEmpty, setIsEmpty] = useState<boolean>(true);
   // const [isInvalid, setIsInvalid] = useState<boolean>(false);
   const [interacted, setInteracted] = useState(false);
+  const [sectionToRemove, setSectionToRemove] = useState<SectionType | undefined>(undefined);
 
   const isInvalid = isEmpty && !!required;
 
@@ -620,6 +623,19 @@ export const GridEditor = ({
     [value, onChange, areasActive, setAreasActiveIfChanged, sectionTypes]
   );
 
+  const showWarnOnRemove = useCallback((area: AreaType) => {
+    const types = getTypes(area.contents);
+
+    return areaTypes
+      .filter((x) => types.includes(x.type))
+      .some(
+        (config) =>
+          config.warnOnRemove?.(
+            area.contents.find((x) => x.type === x.type)?.data
+          ) === true
+      );
+  }, [areaTypes])
+
   const onSectionRemove = useCallback(
     (section: SectionType) => {
       const newData = value
@@ -641,6 +657,11 @@ export const GridEditor = ({
     },
     [value, onChange, areasActive, setAreasActiveIfChanged]
   );
+
+  const checkAndRemoveSection = useCallback((section: SectionType) => {
+    const showWarning = section.areas.some(x => showWarnOnRemove(x));
+    showWarning ? setSectionToRemove(section) : onSectionRemove(section);
+  }, [onSectionRemove, showWarnOnRemove])
 
   const onAreaSwap = useCallback(
     (area1Id: number, area2Id: number): void => {
@@ -684,6 +705,13 @@ export const GridEditor = ({
 
   return (
     <>
+      <RemoveConfirm
+        isOpen={sectionToRemove !== undefined}
+        onClose={() => setSectionToRemove(undefined)}
+        onOk={() => {
+          onSectionRemove(sectionToRemove!);
+          setSectionToRemove(undefined);
+        }} />
       <div
         ref={elem}
         className={classNames(
@@ -699,7 +727,7 @@ export const GridEditor = ({
           sectionTypes={sectionTypes}
           sections={value}
           onSectionChangeOrCreate={onSectionChangeOrCreate}
-          onSectionRemove={onSectionRemove}
+          onSectionRemove={checkAndRemoveSection}
           onAreaSwap={onAreaSwap}
           onContentsReceived={onContentsReceived}
           onSomethingReceived={onSomethingReceived}
