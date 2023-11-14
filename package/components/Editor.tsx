@@ -623,12 +623,7 @@ export const GridEditor = ({
     [value, onChange, areasActive, setAreasActiveIfChanged, sectionTypes]
   );
 
-  const checkAndRemoveSection = (section: SectionType) => {
-    const showWarning = section.areas.some(x => showWarnOnRemove(x));
-    showWarning ? setSectionToRemove(section) : onSectionRemove(section);
-  }
-
-  const showWarnOnRemove = (area: AreaType) => {
+  const showWarnOnRemove = useCallback((area: AreaType) => {
     const types = getTypes(area.contents);
 
     return areaTypes
@@ -639,7 +634,7 @@ export const GridEditor = ({
             area.contents.find((x) => x.type === x.type)?.data
           ) === true
       );
-  }
+  }, [areaTypes])
 
   const onSectionRemove = useCallback(
     (section: SectionType) => {
@@ -662,6 +657,11 @@ export const GridEditor = ({
     },
     [value, onChange, areasActive, setAreasActiveIfChanged]
   );
+
+  const checkAndRemoveSection = useCallback((section: SectionType) => {
+    const showWarning = section.areas.some(x => showWarnOnRemove(x));
+    showWarning ? setSectionToRemove(section) : onSectionRemove(section);
+  }, [onSectionRemove, showWarnOnRemove])
 
   const onAreaSwap = useCallback(
     (area1Id: number, area2Id: number): void => {
