@@ -40,6 +40,8 @@
   }
 
   > .grideditor-content {
+    position: relative;
+
     &.dragging {
       > .section > .section-content > .area * {
         pointer-events: none;
