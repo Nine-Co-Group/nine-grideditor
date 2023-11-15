@@ -35,7 +35,7 @@
 }
 
 .section-controls {
-  transition: opacity 0.2s linear;
+  transition: opacity 0.2s ease-in-out;
   opacity: 0;
   visibility: hidden;
   height: 0;
@@ -44,13 +44,10 @@
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-
-  transition: opacity 0.2s ease-in-out;
   max-height: 100%;
 
   > .tool {
     background-color: transparent;
-
     border-width: 0;
     background: none;
     padding-right: 0.6rem;

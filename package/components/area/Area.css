@@ -69,6 +69,7 @@
       border-radius: var(--grideditor-border-radius);
       outline: var(--grideditor-border-width) dashed
         oklch(var(--grideditor-border-color-oklch));
+      background-color: oklch(var(--grideditor-background-color-oklch));
       transition: outline-color 0.2s linear, background-color 0.2s linear,
         box-shadow 0.2s linear;
       display: flex;

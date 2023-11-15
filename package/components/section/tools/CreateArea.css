@@ -1,5 +1,5 @@
 .section-createarea.section-tool-create.tool {
-  width: calc(100% - calc(1.333em + 0.6rem + 0.6rem));
+  width: calc(100% - calc(1.333em + 0.6rem));
   outline: var(--grideditor-border-width) solid
     oklch(var(--grideditor-border-color-oklch));
   cursor: text;
