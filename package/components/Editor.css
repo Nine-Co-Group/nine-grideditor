@@ -40,10 +40,6 @@
   }
 
   > .grideditor-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-
     &.dragging {
       > .section > .section-content > .area * {
         pointer-events: none;

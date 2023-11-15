@@ -159,6 +159,7 @@ const EditorContent = ({
               rect={rect ? rect.rect : undefined}
               sectionTypes={sectionTypes}
               areaTypes={areaTypes}
+              withCreateArea={sections.length > 1}
             />
           );
         })}
@@ -194,6 +195,7 @@ const EditorSection = ({
   onSomethingReceived,
   onDragChange,
   onResizeChange,
+  withCreateArea,
 }: {
   section: SectionType;
   className?: string;
@@ -211,6 +213,7 @@ const EditorSection = ({
   areaTypes: AreaContentTypeProp<any>[];
   onDragChange?(isDragging: boolean): void;
   onResizeChange?(isResizing: boolean): void;
+  withCreateArea?: boolean;
 }) => {
   const isAutoHeight = hasAutoHeightOnly(
     section,
@@ -220,15 +223,17 @@ const EditorSection = ({
 
   return (
     <>
-      <CreateArea
-        sectionTypes={sectionTypes}
-        order={section.order}
-        designAreaMargin={designAreaMargin}
-        onCreate={onCreate}
-        onAreaSwap={onAreaSwap}
-        onAreaActiveChange={onAreaActiveChange}
-        areaTypes={areaTypes}
-      />
+      {withCreateArea && (
+        <CreateArea
+          sectionTypes={sectionTypes}
+          order={section.order}
+          designAreaMargin={designAreaMargin}
+          onCreate={onCreate}
+          onAreaSwap={onAreaSwap}
+          onAreaActiveChange={onAreaActiveChange}
+          areaTypes={areaTypes}
+        />
+      )}
       <Section
         className={className}
         section={section}
