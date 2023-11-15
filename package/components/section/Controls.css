@@ -77,6 +77,7 @@
         color: oklch(var(--grideditor-color-oklch));
         font: var(--grideditor-font-base);
         text-transform: none;
+        border-width: 0;
 
         &.remove {
           color: oklch(var(--grideditor-color-bad-oklch));
