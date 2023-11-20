@@ -127,7 +127,7 @@ const CreateArea = ({
   return (
     <Create
       className={classNames(
-        "section-createarea",
+        "nge-section-createarea",
         {
           loading: isLoading,
           dropping: isDropping,

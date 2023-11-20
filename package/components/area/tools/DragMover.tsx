@@ -30,14 +30,14 @@ const DragMover = (props: Props) => {
   if (typeNames.length === 0) return null;
 
   return (
-    <div className="tool-dragmover">
+    <div className="nge-tool-dragmover">
       <FormattedMessage id="drag_to_reposition">
         {(x) => (
           //Use span to work-around drag issues with buttons in some browsers
           <button
             ref={elem}
             type="button"
-            className="tool"
+            className="nge-tool"
             title={x!.toString()}
             onPointerEnter={onPointerEnter}
             onPointerLeave={onPointerLeave}

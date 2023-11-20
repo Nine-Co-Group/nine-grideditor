@@ -28,7 +28,7 @@ export const Modal = ({
 
   const someIsOpen = otherProps.isOpen || isOpen;
 
-  const className = _className ? "popup " + _className : "popup";
+  const className = _className ? "nge-popup " + _className : "nge-popup";
 
   const firstClassName = className ? className.split(" ")[0] : "";
 

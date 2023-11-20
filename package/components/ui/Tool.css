@@ -1,10 +1,10 @@
-input[type="checkbox"].input-tool,
-input[type="radio"].input-tool {
+input[type="checkbox"].input-nge-tool,
+input[type="radio"].input-nge-tool {
   position: absolute;
   opacity: 0;
 }
 
-.tool {
+.nge-tool {
   box-sizing: border-box;
   display: inline-block;
   vertical-align: middle;
@@ -13,7 +13,6 @@ input[type="radio"].input-tool {
   background-position: center;
   background-image: none;
   overflow: hidden;
-  padding: 0.6rem 1rem;
   max-width: 100%;
   cursor: pointer;
   text-decoration: none;
@@ -21,26 +20,32 @@ input[type="radio"].input-tool {
   align-items: center;
   white-space: nowrap;
   position: relative;
-  color: oklch(var(--grideditor-button-color-oklch));
+  color: oklch(var(--nge-button-color-oklch));
   border: var(--border-width) solid
-    oklch(var(--grideditor-button-background-color-oklch));
-  background-color: oklch(var(--grideditor-button-background-color-oklch));
-  border-radius: var(--grideditor-border-radius);
-  font-weight: var(--grideditor-font-weight-bold);
-  font-size: var(--grideditor-font-size-small);
-  font-family: var(--grideditor-font-family);
+    oklch(var(--nge-button-background-color-oklch));
+  background-color: oklch(var(--nge-button-background-color-oklch));
+  border-radius: var(--nge-border-radius);
+  font-weight: var(--nge-tool-font-weight);
+  text-transform: var(--nge-tool-text-transform);
+  font-size: var(--nge-font-size-small);
+  font-family: var(--nge-font-family);
   transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
     border 0.15s ease-in-out, color 0.15s ease-in-out, opacity 0.15s ease-in-out;
   gap: 0.2rem;
   display: flex;
 
+  &:not(.has-control) {
+    padding: var(--nge-tool-spacing);
+  }
+  &.has-control > .input-control {
+    padding: var(--nge-tool-spacing);
+  }
+
   &:focus,
   &.focus {
-    background-color: oklch(
-      var(--grideditor-button-focus-background-color-oklch)
-    );
-    border-color: oklch(var(--grideditor-button-focus-background-color-oklch));
-    color: oklch(var(--grideditor-button-focus-color-oklch));
+    background-color: oklch(var(--nge-button-focus-background-color-oklch));
+    border-color: oklch(var(--nge-button-focus-background-color-oklch));
+    color: oklch(var(--nge-button-focus-color-oklch));
   }
 
   &[disabled],
@@ -53,11 +58,9 @@ input[type="radio"].input-tool {
   &:active,
   &.active,
   &.checked {
-    background-color: oklch(
-      var(--grideditor-button-focus-background-color-oklch)
-    );
-    border-color: oklch(var(--grideditor-button-focus-background-color-oklch));
-    color: oklch(var(--grideditor-button-focus-color-oklch));
+    background-color: oklch(var(--nge-button-focus-background-color-oklch));
+    border-color: oklch(var(--nge-button-focus-background-color-oklch));
+    color: oklch(var(--nge-button-focus-color-oklch));
   }
 
   &.dropdown {
@@ -72,11 +75,9 @@ input[type="radio"].input-tool {
 }
 
 @media (hover: hover) {
-  .tool:hover {
-    background-color: oklch(
-      var(--grideditor-button-focus-background-color-oklch)
-    );
-    border-color: oklch(var(--grideditor-button-focus-background-color-oklch));
-    color: oklch(var(--grideditor-button-focus-color-oklch));
+  .nge-tool:hover {
+    background-color: oklch(var(--nge-button-focus-background-color-oklch));
+    border-color: oklch(var(--nge-button-focus-background-color-oklch));
+    color: oklch(var(--nge-button-focus-color-oklch));
   }
 }

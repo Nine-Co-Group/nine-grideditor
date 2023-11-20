@@ -128,7 +128,7 @@ const EditorContent = ({
 
   return (
     <div
-      className={classNames("grideditor-content", {
+      className={classNames("nge-content", {
         dragging: isDragging,
         resizing: isResizing,
       })}

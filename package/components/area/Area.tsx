@@ -90,8 +90,8 @@ const Area = ({
 
     //Create first area type on empty area
     if (
-      e.target.classList.contains("area") ||
-      e.target.classList.contains("area-content")
+      e.target.classList.contains("nge-area") ||
+      e.target.classList.contains("nge-area-content")
     ) {
       const types = getTypes(area.contents);
       const hasType = types.length > 0;
@@ -369,7 +369,7 @@ const Area = ({
       />
       <div
         className={classNames(
-          "area",
+          "nge-area",
           {
             active: isActive,
             editable: withControls,
@@ -424,7 +424,7 @@ const Area = ({
               />
             )}
             {typeNames.length === 0 && (
-              <div className="area-content">
+              <div className="nge-area-content">
                 {!!withControls && (
                   <span className="hint">
                     <Icon id={`add`} />
@@ -463,7 +463,7 @@ const Area = ({
               onBlur={onContentBlur}
               onClick={onClick}
               onTypeChange={(data) => onTypeChange(x.type, data)}
-              className="area-content"
+              className="nge-area-content"
             />
           );
         })}

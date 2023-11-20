@@ -105,8 +105,6 @@ const SectionContent = ({
       }
     }
 
-    console.log(newSection, section);
-
     onChange(newSection);
   };
 
@@ -365,9 +363,11 @@ const SectionContent = ({
   const withExpandablePicker =
     pointerActive === "coarse" && sectionDefinition.areas.length !== 1;
 
+  console.log("section", section.id, areasActive);
+
   return (
     <div
-      className={classNames("section-content", {
+      className={classNames("nge-section-content", {
         // "has-auto-height": hasAutoHeightArea(),
         "is-auto-height": isAutoHeight,
         resizing: isResizing,
@@ -492,7 +492,7 @@ const Section = ({
   return (
     <div
       id={section.id.toString()} //Used for click target detection
-      className={classNames("section grid-content", className, {
+      className={classNames("nge-section", className, {
         "has-area-type": hasAreaType,
         active: !!areasActive && areasActive.length > 0,
         editable: withControls,

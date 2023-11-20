@@ -8,7 +8,7 @@
   }
 } */
 
-.area-tool-picker {
+.nge-area-tool-picker {
   list-style: none;
   display: inline-block;
 
@@ -26,7 +26,7 @@
       @include visibleHideCss(10);
     }
 
-    .more > .tool > span:last-child:not(:first-child):not(.icon) {
+    .more > .nge-tool > span:last-child:not(:first-child):not(.icon) {
       display: none;
     }
 

@@ -1,4 +1,4 @@
-.tool-dragmover {
+.nge-tool-dragmover {
   position: absolute;
   top: 50%;
   left: 0;
@@ -11,7 +11,7 @@
   user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome and Opera */
 
-  .tool {
+  .nge-tool {
     transform: translateY(-50%);
     white-space: nowrap;
     margin: 0 auto;

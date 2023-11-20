@@ -38,7 +38,7 @@ const SectionPicker = ({
   if (typesArray.length < 2) return null;
 
   return (
-    <div className={classNames("section-tool-picker", className)}>
+    <div className={classNames("nge-section-tool-picker", className)}>
       {typesArray.map(([name, type]) => {
         let offset = 0;
 
@@ -53,12 +53,12 @@ const SectionPicker = ({
           <Button
             key={name}
             type="radio"
-            className={`section ${name}`}
+            className={`nge-section ${name}`}
             checked={name === section.type}
             onChange={() => onChange(name)}
           >
             <div
-              className="section-content"
+              className="nge-section-content"
               style={{
                 paddingTop: paddingTop + "%",
                 width: width + "%",
@@ -68,7 +68,7 @@ const SectionPicker = ({
                 const dom = (
                   <span
                     key={i}
-                    className="area-icon is-top"
+                    className="nge-area-icon is-top"
                     style={{
                       width: area.width + "%",
                       //   padding: margin + "%",

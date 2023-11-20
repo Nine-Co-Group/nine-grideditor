@@ -39,7 +39,7 @@ const SectionRemove = ({
   return (
     <>
       <Tool
-        className={classNames("section-tool-remove", className)}
+        className={classNames("nge-section-tool-remove", className)}
         onClick={onOk}
         {...otherProps}
       >

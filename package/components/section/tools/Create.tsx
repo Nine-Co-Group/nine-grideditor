@@ -56,7 +56,7 @@ const SectionCreate = ({
 
   return (
     <Tool
-      className={classNames("section-tool-create", className)}
+      className={classNames("nge-section-tool-create", className)}
       onClickCapture={onClick}
       type="button"
       {...otherProps}

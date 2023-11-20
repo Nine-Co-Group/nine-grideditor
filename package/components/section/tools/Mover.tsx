@@ -34,7 +34,7 @@ const Mover = ({
 
   return (
     <Tool
-      className={classNames("section-tool-mover " + direction)}
+      className={classNames("nge-section-tool-mover " + direction)}
       onClick={onClick}
       {...otherProps}
     >

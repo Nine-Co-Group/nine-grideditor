@@ -1,6 +1,6 @@
-.section {
+.nge-section {
   &.active {
-    .section-controls {
+    .nge-section-controls {
       visibility: visible;
       opacity: 1;
       height: auto;
@@ -8,8 +8,8 @@
   }
 }
 @media (hover: hover) {
-  .section:hover {
-    .section-controls {
+  .nge-section:hover {
+    .nge-section-controls {
       visibility: visible;
       opacity: 1;
       height: auto;
@@ -17,24 +17,24 @@
   }
 }
 
-.section:first-of-type {
-  .section-controls > .section-tool-mover.up {
+.nge-section:first-of-type {
+  .nge-section-controls > .nge-section-tool-mover.up {
     display: none;
   }
 }
-.section:last-of-type {
-  .section-controls > .section-tool-mover.down {
+.nge-section:last-of-type {
+  .nge-section-controls > .nge-section-tool-mover.down {
     display: none;
   }
 }
 
-.grideditor-content div.section.active > .section-controls {
+.nge-content div.nge-section.active > .nge-section-controls {
   opacity: 1;
   visibility: visible;
   overflow: visible;
 }
 
-.section-controls {
+.nge-section-controls {
   transition: opacity 0.2s ease-in-out;
   opacity: 0;
   visibility: hidden;
@@ -46,18 +46,18 @@
   gap: 0.6rem;
   max-height: 100%;
 
-  > .tool {
+  > .nge-tool {
     background-color: transparent;
     border-width: 0;
     background: none;
     padding-right: 0.6rem;
     padding-left: 0.6rem;
-    color: oklch(var(--grideditor-color-oklch));
+    color: oklch(var(--nge-color-oklch));
     padding: 0;
 
     &:hover,
     &:focus {
-      color: oklch(var(--grideditor-color-oklch));
+      color: oklch(var(--nge-color-oklch));
     }
 
     > .icon + span {
@@ -66,21 +66,21 @@
   }
   > .dropdown {
     > .dropdown-container {
-      .section-tool-picker {
+      .nge-section-tool-picker {
         padding: 1rem 1rem 0.5rem;
         width: 25rem;
       }
 
-      > .tool {
+      > .nge-tool {
         padding: 1rem;
         background: none;
-        color: oklch(var(--grideditor-color-oklch));
-        font: var(--grideditor-font-base);
+        color: oklch(var(--nge-color-oklch));
+        font: var(--nge-font-base);
         text-transform: none;
         border-width: 0;
 
         &.remove {
-          color: oklch(var(--grideditor-color-bad-oklch));
+          color: oklch(var(--nge-color-bad-oklch));
         }
       }
     }

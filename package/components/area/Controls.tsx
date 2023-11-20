@@ -62,7 +62,7 @@ const AreaControls = ({
 
   return (
     <>
-      <div className={classNames("area-controls", className)}>
+      <div className={classNames("nge-area-controls", className)}>
         <Resizer
           position="left"
           onResizeEnd={onResizeEnd}
@@ -140,7 +140,7 @@ const AreaControls = ({
 
           return (
             <TypeControl
-              className={`tools tools-area-${x.type}`}
+              className={`nge-tools nge-tools-area-${x.type}`}
               key={x.type}
               data={x.data}
               onChange={(data: any) => onTypeChange(area, x.type, data)}

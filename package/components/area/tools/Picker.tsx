@@ -92,7 +92,7 @@ const Picker = (props: Props) => {
   return (
     <ul
       className={classNames(
-        "area-tool-picker",
+        "nge-area-tool-picker",
         {
           expandable,
           open: showMore,

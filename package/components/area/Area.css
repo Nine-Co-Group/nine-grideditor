@@ -1,4 +1,4 @@
-.area {
+.nge-area {
   box-sizing: border-box;
   position: relative;
   outline: none;
@@ -13,10 +13,9 @@
       width: 2em;
       translate: -50% -50%;
       border-radius: 100%;
-      border: 2px solid oklch(var(--grideditor-color-oklch));
+      border: 2px solid oklch(var(--nge-color-oklch));
       border-bottom-color: transparent;
-      -webkit-animation: grideditor-loader-spin 1s linear infinite;
-      animation: grideditor-loader-spin 1s linear infinite;
+      animation: nge-loader-spin 1s linear infinite;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -28,7 +27,7 @@
     }
   }
 
-  > .area-content {
+  > .nge-area-content {
     display: block;
     overflow: hidden;
     width: 100%;
@@ -44,32 +43,32 @@
 
   &.editable {
     &[draggable]:not(.dragging) {
-      > .area-content {
-        box-shadow: var(--grideditor-shadow);
+      > .nge-area-content {
+        box-shadow: var(--nge-shadow);
       }
     }
 
     &.dragging {
-      > .area-content + .area-content {
+      > .nge-area-content + .nge-area-content {
         display: none !important;
       }
     }
 
     &.is-empty {
-      > .area-content {
-        background-color: oklch(var(--grideditor-background-color-oklch));
+      > .nge-area-content {
+        background-color: oklch(var(--nge-background-color-oklch));
         outline-style: solid;
-        box-shadow: var(--grideditor-inline-shadow);
+        box-shadow: var(--nge-inline-shadow);
         align-items: center;
         justify-content: center;
       }
     }
 
-    > .area-content {
-      border-radius: var(--grideditor-border-radius);
-      outline: var(--grideditor-border-width) dashed
-        oklch(var(--grideditor-border-color-oklch));
-      background-color: oklch(var(--grideditor-background-color-oklch));
+    > .nge-area-content {
+      border-radius: var(--nge-border-radius);
+      outline: var(--nge-border-width) dashed
+        oklch(var(--nge-border-color-oklch));
+      background-color: oklch(var(--nge-background-color-oklch));
       transition: outline-color 0.2s linear, background-color 0.2s linear,
         box-shadow 0.2s linear;
       display: flex;
@@ -82,8 +81,8 @@
         overflow: hidden;
         text-align: center;
         box-sizing: border-box;
-        font-weight: var(--grideditor-font-weight-bold);
-        color: oklch(var(--grideditor-color-oklch));
+        font-weight: var(--nge-font-weight-bold);
+        color: oklch(var(--nge-color-oklch));
         padding: 0 1rem;
         display: flex;
         width: auto;
@@ -91,15 +90,15 @@
         gap: 1rem;
 
         > span:not(.icon) {
-          font-size: var(--grideditor-font-size-small);
+          font-size: var(--nge-font-size-small);
         }
       }
     }
     &.active,
     &.resizing {
-      > .area-content {
-        outline: var(--grideditor-border-width) solid
-          oklch(var(--grideditor-color-neutral-oklch)) !important;
+      > .nge-area-content {
+        outline: var(--nge-border-width) solid
+          oklch(var(--nge-color-neutral-oklch)) !important;
         > .hint {
           visibility: hidden;
         }
@@ -107,10 +106,8 @@
     }
 
     &.dropping {
-      > .area-content {
-        background-color: oklch(
-          var(--grideditor-color-neutral-oklch)
-        ) !important;
+      > .nge-area-content {
+        background-color: oklch(var(--nge-color-neutral-oklch)) !important;
 
         > * {
           opacity: 0.5;
@@ -121,11 +118,11 @@
 }
 
 @media (hover: hover) {
-  .section-content:not(.resizing) .area {
+  .nge-section-content:not(.resizing) .nge-area {
     &.editable {
       &:hover {
-        > .area-content {
-          outline: 2px solid oklch(var(--grideditor-color-neutral-oklch)) !important;
+        > .nge-area-content {
+          outline: 2px solid oklch(var(--nge-color-neutral-oklch)) !important;
         }
       }
     }
@@ -133,10 +130,10 @@
 }
 
 /* //When row only contains auto items, make them relative */
-.section-content.is-auto-height {
+.nge-section-content.is-auto-height {
   padding-top: 0 !important;
 
-  .area {
+  .nge-area {
     &.is-top {
       position: relative;
     }
@@ -144,7 +141,7 @@
 }
 
 @media (hover: hover) {
-  .area.editable.is-empty > .area-content:hover {
-    outline-color: oklch(var(--grideditor-color-neutral-oklch));
+  .nge-area.editable.is-empty > .nge-area-content:hover {
+    outline-color: oklch(var(--nge-color-neutral-oklch));
   }
 }

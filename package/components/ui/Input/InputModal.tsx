@@ -63,11 +63,7 @@ const InputModal = ({ invalid, accept, multiple, ...otherProps }: Props) => {
   }, [invalid, accept, multiple]);
 
   return (
-    <Modal
-      contentLabel="Validation modal"
-      {...otherProps}
-      className="popup-input-modal"
-    >
+    <Modal contentLabel="Validation modal" {...otherProps}>
       <div className="content">
         <h1 className="heading">{content.title}</h1>
         <p className="sub-heading">{content.content}</p>

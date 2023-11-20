@@ -1,8 +1,8 @@
-.section-tool-picker {
+.nge-section-tool-picker {
   display: flex;
   display: flex;
   gap: 1rem;
-  .tool.section {
+  .nge-tool.nge-section {
     flex-grow: 1;
     background: transparent;
     border-color: transparent;
@@ -19,25 +19,25 @@
       background-color: transparent;
       border-color: transparent;
 
-      .area-icon {
-        background-color: oklch(var(--grideditor-color-oklch));
+      .nge-area-icon {
+        background-color: oklch(var(--nge-color-oklch));
       }
       background-color: transparent;
       border-color: transparent;
 
-      .area-icon {
-        background-color: oklch(var(--grideditor-color-oklch));
+      .nge-area-icon {
+        background-color: oklch(var(--nge-color-oklch));
       }
     }
 
-    .section-content {
+    .nge-section-content {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
 
-    .area-icon {
+    .nge-area-icon {
       box-sizing: border-box;
       border: 0 solid transparent;
       border-bottom-width: 2px;
@@ -46,7 +46,7 @@
       vertical-align: top;
       height: 100%;
       background-clip: content-box;
-      background-color: oklch(var(--grideditor-border-color-oklch));
+      background-color: oklch(var(--nge-border-color-oklch));
       &.is-top {
         position: absolute;
         top: 0;
@@ -56,10 +56,10 @@
 }
 
 @media (hover: hover) {
-  .section-tool-picker {
-    .tool.section:hover {
-      .area-icon {
-        background-color: oklch(var(--grideditor-color-oklch));
+  .nge-section-tool-picker {
+    .nge-tool.nge-section:hover {
+      .nge-area-icon {
+        background-color: oklch(var(--nge-color-oklch));
       }
     }
   }

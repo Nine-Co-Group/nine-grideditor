@@ -1,10 +1,10 @@
-@keyframes grideditor-loader-spin {
+@keyframes nge-loader-spin {
   100% {
     transform: rotate(360deg);
   }
 }
 
-.grideditor {
+.nge {
   user-select: none;
   &.loading {
     min-height: 3rem;
@@ -17,9 +17,9 @@
       width: 2em;
       translate: -50% -50%;
       border-radius: 100%;
-      border: 2px solid oklch(var(--grideditor-color-oklch));
+      border: 2px solid oklch(var(--nge-color-oklch));
       border-bottom-color: transparent;
-      animation: grideditor-loader-spin 1s linear infinite;
+      animation: nge-loader-spin 1s linear infinite;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -31,19 +31,18 @@
     }
   }
 
-  &.invalid > .grideditor-content {
-    > .section > .section-content > .area > .area-content,
-    > .section-createarea.section-tool-create.tool:first-child:last-child {
-      outline: var(--grideditor-border-width) solid
-        oklch(var(--grideditor-bad-color-oklch));
+  &.invalid > .nge-content {
+    > .nge-section > .nge-section-content > .nge-area > .nge-area-content,
+    > .nge-section-createarea.nge-section-tool-create.nge-tool:first-child:last-child {
+      outline: var(--nge-border-width) solid oklch(var(--nge-bad-color-oklch));
     }
   }
 
-  > .grideditor-content {
+  > .nge-content {
     position: relative;
 
     &.dragging {
-      > .section > .section-content > .area * {
+      > .nge-section > .nge-section-content > .nge-area * {
         pointer-events: none;
       }
     }
@@ -53,7 +52,7 @@
       }
     }
 
-    > .tool.section-tool-create:first-child:last-child {
+    > .nge-tool.nge-section-tool-create:first-child:last-child {
       aspect-ratio: 16/9;
       position: relative;
     }

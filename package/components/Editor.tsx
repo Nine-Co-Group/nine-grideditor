@@ -506,6 +506,7 @@ export const GridEditor = ({
       //   }
       // }
 
+      console.log("onDocumentClick", remainsActive);
       setAreasActiveIfChanged(remainsActive);
     },
     [areasActive, setAreasActiveIfChanged, value]
@@ -572,8 +573,6 @@ export const GridEditor = ({
       const incomingSectionIds = incomingSections.map((x) => x.id);
       let newSections = value.filter((x) => !incomingSectionIds.includes(x.id));
 
-      console.log(newSections, incomingSections);
-
       incomingSections.forEach((section) => {
         const old = value.find((x) => x.id === section.id);
         //Adding template
@@ -600,6 +599,7 @@ export const GridEditor = ({
                 area.order < sectionGetAreaCount(sectionTypes[section.type]!)
               );
             });
+            console.log("onSectionChangeOrCreate", stayingActive);
             setAreasActiveIfChanged(stayingActive);
           }
 
@@ -654,6 +654,10 @@ export const GridEditor = ({
       //Remove active areas if they are in section
       const sectionAreaIds = section.areas.map((x) => x.id);
 
+      console.log(
+        "onSectionRemove",
+        areasActive.filter((x) => !sectionAreaIds.includes(x))
+      );
       setAreasActiveIfChanged(
         areasActive.filter((x) => !sectionAreaIds.includes(x))
       );
@@ -711,6 +715,8 @@ export const GridEditor = ({
   //   setIsInvalid(true);
   // };
 
+  console.log("editor", areasActive);
+
   return (
     <>
       <RemoveConfirm
@@ -724,7 +730,7 @@ export const GridEditor = ({
       <div
         ref={elem}
         className={classNames(
-          "grideditor",
+          "nge",
           {
             invalid: !!isInvalid && !!interacted,
             empty: isEmpty,
@@ -749,7 +755,7 @@ export const GridEditor = ({
       {!!required && (
         //We use this for form validation when needed
         <input
-          className="grideditor-input"
+          className="nge-input"
           type="text"
           required={required}
           name={name}

@@ -1,4 +1,4 @@
-.area-resizer {
+.nge-area-resizer {
   position: absolute;
   z-index: 6;
   display: block;
@@ -7,7 +7,7 @@
   line-height: 23px;
   font-size: 11px;
   background-color: transparent;
-  color: oklch(var(--grideditor-background-color-oklch)) !important;
+  color: oklch(var(--nge-background-color-oklch)) !important;
   text-align: center;
   border: none;
   padding: 8px;
@@ -15,9 +15,8 @@
   > span {
     display: block;
     height: 100%;
-    outline: var(--grideditor-border-width) solid
-      oklch(var(--grideditor-border-color-oklch));
-    background-color: oklch(var(--grideditor-background-color-oklch));
+    outline: var(--nge-border-width) solid oklch(var(--nge-border-color-oklch));
+    background-color: oklch(var(--nge-background-color-oklch));
   }
 
   @media all and (max-width: 735px) {
@@ -70,7 +69,7 @@
     bottom: 0;
     transform: translate(50%, 50%);
     display: none;
-    font-weight: var(--grideditor-font-weight-bold);
+    font-weight: var(--nge-font-weight-bold);
     cursor: nwse-resize;
   }
 
@@ -79,18 +78,22 @@
     bottom: 0;
     transform: translate(-50%, 50%);
     display: none;
-    font-weight: var(--grideditor-font-weight-bold);
+    font-weight: var(--nge-font-weight-bold);
     cursor: nesw-resize;
   }
 }
 
-.area.is-top:first-child > .area-controls > .area-resizer.resizebottomleft,
-.area.is-top:last-child > .area-controls > .area-resizer.resizebottomright {
+.nge-area.is-top:first-child
+  > .nge-area-controls
+  > .nge-area-resizer.resizebottomleft,
+.nge-area.is-top:last-child
+  > .nge-area-controls
+  > .nge-area-resizer.resizebottomright {
   display: block;
 }
 
 @media (hover: hover) {
-  .area-resizer:hover {
+  .nge-area-resizer:hover {
     > span {
       outline-color: #000;
       @media (prefers-color-scheme: dark) {

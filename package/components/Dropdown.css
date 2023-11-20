@@ -24,18 +24,17 @@
     margin-right: 0;
     width: auto;
     box-sizing: border-box;
-    transition: transform var(--grideditor-transition-style),
-      opacity var(--grideditor-transition-style);
-    border-radius: var(--grideditor-border-radius);
-    color: oklch(var(--grideditor-color-oklch));
-    background-color: oklch(var(--grideditor-modal-background-color-oklch));
-    border: var(--grideditor-border-width) solid
-      oklch(var(--grideditor-border-color-oklch));
-    box-shadow: var(--grideditor-shadow);
+    transition: transform var(--nge-transition-style),
+      opacity var(--nge-transition-style);
+    border-radius: var(--nge-border-radius);
+    color: oklch(var(--nge-color-oklch));
+    background-color: oklch(var(--nge-modal-background-color-oklch));
+    border: var(--nge-border-width) solid oklch(var(--nge-border-color-oklch));
+    box-shadow: var(--nge-shadow);
     display: flex;
     flex-direction: column;
     /* Reset stuff */
-    font: var(--grideditor-font-base);
+    font: var(--nge-font-base);
     white-space: normal;
     text-transform: none;
     letter-spacing: normal;

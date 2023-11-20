@@ -144,7 +144,7 @@ const Resizer = ({ position, onResize, onResizeEnd, ...otherProps }: Props) => {
   return (
     <button
       type="button"
-      className={classNames(`area-resizer resize${position}`, {
+      className={classNames(`nge-area-resizer resize${position}`, {
         active: dragging,
       })}
       style={{ touchAction: "none" }}

@@ -13,7 +13,7 @@ export const textType: AreaContentDefinitionType<TextDataType> = {
   contentType: "html",
   isAutoHeight: true,
   create: () => ({
-    src: undefined,
+    src: "<p>&#8203;</p>",
   }),
   warnOnRemove: (data) => !!data.src,
 };

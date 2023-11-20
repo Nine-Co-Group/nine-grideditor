@@ -1,59 +1,56 @@
 :root {
-  --grideditor-color-theme-oklch: 54.57% 0.08 194.03;
-  --grideditor-color-theme2-oklch: 44.36% 0.063 194.09;
+  --nge-color-theme-oklch: 54.57% 0.08 194.03;
+  --nge-color-theme2-oklch: 44.36% 0.063 194.09;
 
-  --grideditor-font-family: system-ui, "Segoe UI", Helvetica, Arial, sans-serif,
+  --nge-font-family: system-ui, "Segoe UI", Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji";
-  --grideditor-font-base: 300 12px/1.5 var(--grideditor-font-family);
-  --grideditor-font-weight-bold: 600;
-  --grideditor-font-size-small: 10px;
+  --nge-font-base: 300 12px/1.5 var(--nge-font-family);
+  --nge-font-weight-bold: 600;
+  --nge-font-size-small: 10px;
 
-  --grideditor-color-good-oklch: 61.18% 0.147 143.24;
-  --grideditor-color-good-dark-oklch: 51.18% 0.147 143.24;
-  --grideditor-color-good-bright-oklch: 71.18% 0.147 143.24;
-  --grideditor-color-neutral-oklch: 79.78% 0.153 79.82;
-  --grideditor-color-neutral-dark-oklch: 64.49% 0.122 79.92;
-  --grideditor-color-neutral-bright-oklch: 84.49% 0.122 79.92;
-  --grideditor-color-bad-oklch: 64.9% 0.256 10.76;
-  --grideditor-color-bad-dark-oklch: 54.9% 0.256 10.76;
-  --grideditor-color-bad-bright-oklch: 74.9% 0.256 10.76;
+  --nge-color-good-oklch: 61.18% 0.147 143.24;
+  --nge-color-good-dark-oklch: 51.18% 0.147 143.24;
+  --nge-color-good-bright-oklch: 71.18% 0.147 143.24;
+  --nge-color-neutral-oklch: 79.78% 0.153 79.82;
+  --nge-color-neutral-dark-oklch: 64.49% 0.122 79.92;
+  --nge-color-neutral-bright-oklch: 84.49% 0.122 79.92;
+  --nge-color-bad-oklch: 64.9% 0.256 10.76;
+  --nge-color-bad-dark-oklch: 54.9% 0.256 10.76;
+  --nge-color-bad-bright-oklch: 74.9% 0.256 10.76;
 
-  --grideditor-color-dark-oklch: 21.43% 0.012 235.73;
-  --grideditor-color-bright-oklch: 98.84% 0.001 286.37;
+  --nge-tool-spacing: 0.7rem 1rem;
+  --nge-tool-font-weight: var(--nge-font-weight-bold);
+  --nge-tool-text-transform: uppercase;
 
-  --grideditor-transition-duration: 0.25s;
-  --grideditor-transition-style: var(--transition-duration) ease-in-out;
+  --nge-color-dark-oklch: 21.43% 0.012 235.73;
+  --nge-color-bright-oklch: 98.84% 0.001 286.37;
 
-  --grideditor-shadow-color-oklch: 15.39% 0.028 245.26;
-  --grideditor-shadow: 0px 6px 1.5rem 4px
-    oklch(var(--grideditor-shadow-color-oklch) / 10%);
-  --grideditor-inline-shadow: 0px 6px 1.5rem 4px
-    oklch(var(--grideditor-shadow-color-oklch) / 10%);
+  --nge-transition-duration: 0.25s;
+  --nge-transition-style: var(--transition-duration) ease-in-out;
 
-  --grideditor-border-radius: 1rem;
+  --nge-shadow-color-oklch: 15.39% 0.028 245.26;
+  --nge-shadow: 0px 6px 1.5rem 4px oklch(var(--nge-shadow-color-oklch) / 10%);
+  --nge-inline-shadow: 0px 6px 1.5rem 4px
+    oklch(var(--nge-shadow-color-oklch) / 10%);
 
-  --grideditor-color-oklch: var(--grideditor-color-dark-oklch);
-  --grideditor-background-color-oklch: var(--grideditor-color-bright-oklch);
+  --nge-border-radius: 1rem;
 
-  --grideditor-modal-color-oklch: var(--grideditor-color-oklch);
-  --grideditor-modal-background-color-oklch: var(
-    --grideditor-background-color-oklch
-  );
+  --nge-color-oklch: var(--nge-color-dark-oklch);
+  --nge-background-color-oklch: var(--nge-color-bright-oklch);
 
-  --grideditor-button-color-oklch: var(--grideditor-color-bright-oklch);
-  --grideditor-button-background-color-oklch: var(
-    --grideditor-color-theme-oklch
-  );
-  --grideditor-button-focus-color-oklch: var(--grideditor-color-bright-oklch);
-  --grideditor-button-focus-background-color-oklch: var(
-    --grideditor-color-theme2-oklch
-  );
+  --nge-modal-color-oklch: var(--nge-color-oklch);
+  --nge-modal-background-color-oklch: var(--nge-background-color-oklch);
 
-  --grideditor-border-width: 0.5px;
-  --grideditor-border-color-oklch: 71.45% 0.007 207.99;
+  --nge-button-color-oklch: var(--nge-color-bright-oklch);
+  --nge-button-background-color-oklch: var(--nge-color-theme-oklch);
+  --nge-button-focus-color-oklch: var(--nge-color-bright-oklch);
+  --nge-button-focus-background-color-oklch: var(--nge-color-theme2-oklch);
+
+  --nge-border-width: 0.5px;
+  --nge-border-color-oklch: 71.45% 0.007 207.99;
 }
 
 html,
 body {
-  font: var(--grideditor-font-base);
+  font: var(--nge-font-base);
 }

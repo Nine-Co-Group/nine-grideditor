@@ -1,5 +1,5 @@
-.popup.code {
-  > div > .popup-container {
+.nge-popup.code {
+  > div > .nge-popup-container {
     .input-label {
       display: none;
     }
@@ -10,27 +10,27 @@
   }
 }
 
-.area-controls {
+.nge-area-controls {
   width: 0;
   height: 0;
-  font: var(--grideditor-font-base);
+  font: var(--nge-font-base);
   [disabled] {
     display: none;
   }
 
-  > *:not(.tools) {
+  > *:not(.nge-tools) {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease-in-out;
   }
 
-  > .tool {
-    background-color: oklch(var(--grideditor-background-color-oklch) / 75%);
-    box-shadow: var(--grideditor-inline-shadow);
+  > .nge-tool {
+    background-color: oklch(var(--nge-background-color-oklch) / 75%);
+    box-shadow: var(--nge-inline-shadow);
     backdrop-filter: blur(4px);
-    color: oklch(var(--grideditor-color-oklch));
+    color: oklch(var(--nge-color-oklch));
 
-    &.tool-remove {
+    &.nge-tool-remove {
       position: absolute;
       top: 0.5rem;
       right: 0.5rem;
@@ -44,7 +44,7 @@
       }
     }
   }
-  .area-tool-picker {
+  .nge-area-tool-picker {
     position: absolute;
     top: 50%;
     left: 0;
@@ -76,25 +76,25 @@
   }
 }
 
-.area.typing > .area-controls {
+.nge-area.typing > .nge-area-controls {
   opacity: 0;
   visibility: hidden;
   display: none;
 }
 
 @media (hover: hover) {
-  .section-content:not(.resizing) .area:hover {
-    .area-controls > *:not(.area-tool-picker) {
+  .nge-section-content:not(.resizing) .nge-area:hover {
+    .nge-area-controls > *:not(.nge-area-tool-picker) {
       opacity: 1;
       visibility: visible;
     }
   }
 }
 
-.area {
+.nge-area {
   &.active,
   &.resizing {
-    .area-controls {
+    .nge-area-controls {
       > * {
         opacity: 1;
         visibility: visible;
@@ -103,9 +103,9 @@
   }
 }
 
-.area.resizing {
-  .area-controls {
-    > .area-tool-picker {
+.nge-area.resizing {
+  .nge-area-controls {
+    > .nge-area-tool-picker {
       visibility: hidden;
       opacity: 0;
     }

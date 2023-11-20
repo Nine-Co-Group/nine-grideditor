@@ -1,14 +1,13 @@
-.section-createarea.section-tool-create.tool {
+.nge-section-createarea.nge-section-tool-create.nge-tool {
   width: calc(100% - calc(1.333em + 0.6rem));
-  outline: var(--grideditor-border-width) solid
-    oklch(var(--grideditor-border-color-oklch));
+  outline: var(--nge-border-width) solid oklch(var(--nge-border-color-oklch));
   cursor: text;
   overflow: visible;
   text-overflow: ellipsis;
-  color: oklch(var(--grideditor-color-oklch));
-  background-color: oklch(var(--grideditor-background-color-oklch));
+  color: oklch(var(--nge-color-oklch));
+  background-color: oklch(var(--nge-background-color-oklch));
   transition: outline-color 0.2s linear, background-color 0.2s linear;
-  box-shadow: var(--grideditor-inline-shadow);
+  box-shadow: var(--nge-inline-shadow);
 
   &.hidden {
     display: none;
@@ -19,7 +18,7 @@
   }
 
   &:focus {
-    outline: 2px solid oklch(var(--grideditor-color-neutral-oklch));
+    outline: 2px solid oklch(var(--nge-color-neutral-oklch));
   }
 
   &:not(:last-child) {
@@ -31,7 +30,7 @@
   }
 
   &.dropping {
-    background-color: oklch(var(--grideditor-color-neutral-oklch)) !important;
+    background-color: oklch(var(--nge-color-neutral-oklch)) !important;
 
     > * {
       opacity: 0.5;
@@ -48,10 +47,9 @@
       width: 2em;
       translate: -50% -50%;
       border-radius: 100%;
-      border: 2px solid oklch(var(--grideditor-color-oklch));
+      border: 2px solid oklch(var(--nge-color-oklch));
       border-bottom-color: transparent;
-      -webkit-animation: grideditor-loader-spin 1s linear infinite;
-      animation: grideditor-loader-spin 1s linear infinite;
+      animation: nge-loader-spin 1s linear infinite;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -64,21 +62,17 @@
   }
 }
 
-.grideditor-content > .section.is-empty + .section-inserter.tool {
-  display: none;
-}
-
 @media (hover: hover) {
-  .section-createarea.section-tool-create.tool {
+  .nge-section-createarea.nge-section-tool-create.nge-tool {
     &:hover {
-      outline-color: oklch(var(--grideditor-color-neutral-oklch));
+      outline-color: oklch(var(--nge-color-neutral-oklch));
     }
     &:not(:last-child) {
       display: block;
       z-index: 5;
       position: absolute;
       left: 0;
-      box-shadow: var(--grideditor-inline-shadow);
+      box-shadow: var(--nge-inline-shadow);
       opacity: 0;
       margin-top: 0 !important;
       margin-bottom: 0 !important;

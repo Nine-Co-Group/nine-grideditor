@@ -36,13 +36,12 @@ const Controls = ({
   );
 
   return (
-    <div className="section-controls">
+    <div className="nge-section-controls">
       <Mover direction="up" section={section} onChange={onSectionChange} />
-      <Dropdown className="tool right">
+      <Dropdown className="nge-tool right">
         <Icon id="dots-vertical" />
         {Object.keys(sectionTypes).length > 1 && (
           <Picker
-            className="section-sections"
             section={section}
             onChange={onChange}
             sectionTypes={sectionTypes}

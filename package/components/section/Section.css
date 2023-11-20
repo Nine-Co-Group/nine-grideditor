@@ -1,7 +1,7 @@
-.grid-content.section {
+.nge-section {
   display: flex;
   flex-direction: row;
-  > .section-content {
+  > .nge-section-content {
     flex-grow: 1;
     position: relative;
     box-sizing: border-box;
@@ -12,7 +12,7 @@
       display: flex;
       padding-top: 0 !important;
 
-      > .area {
+      > .nge-area {
         flex-grow: 0;
         flex-shrink: 0;
         position: relative;
@@ -22,7 +22,7 @@
         height: auto !important;
       }
 
-      .area-resizer {
+      .nge-area-resizer {
         &.resizebottom,
         &.resizebottomleft,
         &.resizebottomright {
@@ -33,7 +33,7 @@
   }
 
   &.editable {
-    > .section-content {
+    > .nge-section-content {
       min-width: 1rem;
       min-height: 1rem;
     }

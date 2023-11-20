@@ -59,7 +59,7 @@ const Remove = ({
     <>
       <RemoveConfirm isOpen={isOpen} onClose={onCancel} onOk={onConfirm} />
       <Button
-        className="tool-remove"
+        className="nge-tool-remove"
         title={formatMessage({ id: "remove" })}
         onClick={onOk}
         {...otherProps}
