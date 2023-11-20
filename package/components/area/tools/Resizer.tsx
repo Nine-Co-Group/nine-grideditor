@@ -140,7 +140,6 @@ const Resizer = ({ position, onResize, onResizeEnd, ...otherProps }: Props) => {
     onResize(changePx, position);
   }, 25);
 
-  //Use span because browsers has problems otherwise
   return (
     <button
       type="button"

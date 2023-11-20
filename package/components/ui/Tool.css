@@ -27,7 +27,7 @@ input[type="radio"].input-nge-tool {
   border-radius: var(--nge-border-radius);
   font-weight: var(--nge-tool-font-weight);
   text-transform: var(--nge-tool-text-transform);
-  font-size: var(--nge-font-size-small);
+  font-size: var(--nge-tool-font-size);
   font-family: var(--nge-font-family);
   transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
     border 0.15s ease-in-out, color 0.15s ease-in-out, opacity 0.15s ease-in-out;

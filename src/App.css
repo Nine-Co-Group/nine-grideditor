@@ -6,7 +6,6 @@
     "Apple Color Emoji", "Segoe UI Emoji";
   --nge-font-base: 300 12px/1.5 var(--nge-font-family);
   --nge-font-weight-bold: 600;
-  --nge-font-size-small: 10px;
 
   --nge-color-good-oklch: 61.18% 0.147 143.24;
   --nge-color-good-dark-oklch: 51.18% 0.147 143.24;
@@ -21,6 +20,7 @@
   --nge-tool-spacing: 0.7rem 1rem;
   --nge-tool-font-weight: var(--nge-font-weight-bold);
   --nge-tool-text-transform: uppercase;
+  --nge-tool-font-size: 10px;
 
   --nge-color-dark-oklch: 21.43% 0.012 235.73;
   --nge-color-bright-oklch: 98.84% 0.001 286.37;

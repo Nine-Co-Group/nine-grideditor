@@ -8,6 +8,8 @@
   background-color: oklch(var(--nge-background-color-oklch));
   transition: outline-color 0.2s linear, background-color 0.2s linear;
   box-shadow: var(--nge-inline-shadow);
+  font-size: inherit;
+  text-transform: inherit;
 
   &.hidden {
     display: none;

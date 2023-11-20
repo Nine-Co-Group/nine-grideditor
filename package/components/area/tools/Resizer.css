@@ -85,12 +85,21 @@
 
 .nge-area.is-top:first-child
   > .nge-area-controls
+  > .nge-area-resizer.resizeleft,
+.nge-area.is-top:last-child
+  > .nge-area-controls
+  > .nge-area-resizer.resizeright {
+  display: none;
+}
+
+/* .nge-area.is-top:first-child
+  > .nge-area-controls
   > .nge-area-resizer.resizebottomleft,
 .nge-area.is-top:last-child
   > .nge-area-controls
   > .nge-area-resizer.resizebottomright {
   display: block;
-}
+} */
 
 @media (hover: hover) {
   .nge-area-resizer:hover {
