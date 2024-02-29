@@ -63,7 +63,7 @@ input[type="radio"].input-nge-tool {
     color: oklch(var(--nge-button-focus-color-oklch));
   }
 
-  &.dropdown {
+  &.nge-dropdown {
     text-align: initial;
     overflow: visible;
 

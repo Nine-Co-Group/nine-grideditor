@@ -186,7 +186,7 @@ const Dropdown = ({
 
   return (
     <TagName
-      className={classNames("dropdown", className, as, {
+      className={classNames("nge-dropdown", className, as, {
         active: isOpen,
       })}
       onClick={onClick}
