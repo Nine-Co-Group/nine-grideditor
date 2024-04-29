@@ -35,6 +35,8 @@ type Props = {
   withExpandablePicker: boolean;
 };
 
+const MediaAreaTypes = ["media"];
+
 const AreaControls = ({
   area,
   isActive,
@@ -59,6 +61,7 @@ const AreaControls = ({
 
   const types = getTypes(area.contents);
   const hasType = types.length > 0;
+  const isMedia = areaTypes.some(at => MediaAreaTypes.includes(at.contentType));
 
   return (
     <>
@@ -100,7 +103,7 @@ const AreaControls = ({
             prefix="Controls"
             data-visible={withExpandablePicker ? "2" : undefined}
           >
-            {!!onFiles && (
+            {!!onFiles && isMedia && (
               <li className="upload-control">
                 <Tool
                   type="file"
