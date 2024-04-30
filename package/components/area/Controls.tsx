@@ -59,6 +59,7 @@ const AreaControls = ({
 
   const types = getTypes(area.contents);
   const hasType = types.length > 0;
+  const withUpload = areaTypes.some((x) => !!x.onFiles);
 
   return (
     <>
@@ -100,7 +101,7 @@ const AreaControls = ({
             prefix="Controls"
             data-visible={withExpandablePicker ? "2" : undefined}
           >
-            {!!onFiles && (
+            {!!onFiles && withUpload && (
               <li className="upload-control">
                 <Tool
                   type="file"
