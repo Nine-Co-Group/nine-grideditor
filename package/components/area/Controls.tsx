@@ -35,8 +35,6 @@ type Props = {
   withExpandablePicker: boolean;
 };
 
-const MediaAreaTypes = ["media"];
-
 const AreaControls = ({
   area,
   isActive,
