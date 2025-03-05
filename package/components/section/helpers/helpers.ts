@@ -63,7 +63,7 @@ const heightAreaAdjusted = (area: AreaType, margin: number): number | null => {
 export const getDimensionsFitToAreas = (
   areas: AreaType[],
   _type: string,
-  margin: number
+  margin: number,
 ): DimensionType => {
   const area = areas[0];
 
@@ -77,7 +77,7 @@ export const getAdjustedToAreas = (section: SectionType): SectionType => {
   const { width, height } = getDimensionsFitToAreas(
     section.areas,
     section.type,
-    section.data.margin
+    section.data.margin,
   );
 
   if (width) section.width = width;
@@ -88,7 +88,7 @@ export const getAdjustedToAreas = (section: SectionType): SectionType => {
       const { widthHeightRatioContent, widthHeightRatio } = areaCalculateRatios(
         y.width,
         y.height,
-        y.order
+        y.order,
       );
       y.widthHeightRatio = widthHeightRatio;
       y.widthHeightRatioContent = widthHeightRatioContent;
@@ -103,7 +103,7 @@ export const create = (
   sectionDefinition: SectionDefinition,
   order: number,
   margin: number,
-  areas?: AreaType[]
+  areas?: AreaType[],
 ): SectionType => {
   //Reset the height of stuff in section
   const newSection: SectionType = {
@@ -130,7 +130,7 @@ export const create = (
           areaMeta.height,
           x.order,
           newSection,
-          x.contents
+          x.contents,
         );
         if (x.id) area.id = x.id;
       } else {
@@ -148,7 +148,7 @@ export const create = (
   const { width, height } = getDimensionsFitToAreas(
     newSection.areas,
     newSection.type,
-    newSection.data.margin
+    newSection.data.margin,
   );
 
   if (width) newSection.width = width;
@@ -167,7 +167,7 @@ export const getAreaCount = (sectionDefinition: SectionDefinition) => {
 
 export const getWithAreasPadded = (
   section: SectionType,
-  sectionDefinition: SectionDefinition
+  sectionDefinition: SectionDefinition,
 ) => {
   const sectionAreaCount = getAreaCount(sectionDefinition);
 
@@ -186,7 +186,7 @@ export const getWithAreasPadded = (
 export const hasAutoHeightOnly = (
   section: SectionType,
   sectionDefinition: SectionDefinition,
-  areaTypes: AreaContentDefinitionType<any>[]
+  areaTypes: AreaContentDefinitionType<any>[],
 ) => {
   if (!section) return false;
 
@@ -204,7 +204,7 @@ export const hasAutoHeightOnly = (
         const type = areaTypes.find((x) => x.type === name);
 
         return type?.isAutoHeight !== true;
-      })
+      }),
   );
 };
 
@@ -212,7 +212,7 @@ const SECTION_MIN_PERCENTAGE = 25;
 
 export const setDimensions = (
   section: SectionType,
-  { width, height }: DimensionType
+  { width, height }: DimensionType,
 ) => {
   const orgWidth = width;
   width = Math.min(100, Math.max(SECTION_MIN_PERCENTAGE, width));
@@ -229,7 +229,7 @@ export const setDimensions = (
       const { widthHeightRatioContent, widthHeightRatio } = areaCalculateRatios(
         x.width,
         x.height,
-        height
+        height,
       );
       x.widthHeightRatio = widthHeightRatio;
       x.widthHeightRatioContent = widthHeightRatioContent;

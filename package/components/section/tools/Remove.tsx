@@ -12,7 +12,7 @@ type Props = {
   onRemove(area: SectionType): void;
   areaTypes: AreaContentDefinitionType<any>[];
   className?: string;
-  children?: JSX.Element;
+  children?: React.ReactNode;
 };
 
 const SectionRemove = ({
@@ -27,7 +27,7 @@ const SectionRemove = ({
     section.areas.forEach((x) => {
       x.contents.forEach((content) => {
         const areaComponentType = areaTypes.find(
-          (x) => content.type === x.type
+          (x) => content.type === x.type,
         )!;
         areaComponentType.onRemove?.(content.data);
       });

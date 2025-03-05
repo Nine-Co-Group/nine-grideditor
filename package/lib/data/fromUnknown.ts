@@ -8,39 +8,36 @@ import { AreaContentDefinitionType, AreaType } from "../../components/area";
 import { DimensionType } from "../../types";
 import { getId } from "../getId";
 import { MARGIN_DEFAULT } from ".";
+import {
+  stripForbiddenAttributes,
+  stripForbiddenStyles,
+  stripForbiddenTags,
+} from "../dom";
 
-type CreateReturn = {
-  sectionData: SectionType;
-  areaData: AreaType;
-};
+type CreateReturn = { sectionData: SectionType; areaData: AreaType };
 
 const sectionDefinition: SectionDefinition = {
   height: 55,
-  areas: [
-    {
-      width: 100,
-    },
-  ],
+  areas: [{ width: 100 }],
 };
 
 export const fromUnknownValue = (
   html: string,
   sectionTypes: SectionDefinitionNamed,
-  areaTypes: AreaContentDefinitionType<any>[]
+  areaTypes: AreaContentDefinitionType<any>[],
 ): Promise<SectionType[]> => {
   if (!html) return Promise.resolve([]);
 
   const textType =
     areaTypes.find((x) => x.contentType === "text") ||
     areaTypes.find((x) => x.contentType === "html");
+  const titleType = areaTypes.find((x) => x.contentType === "title");
   const mediaType = areaTypes.find((x) => x.contentType === "media");
   const embedType = areaTypes.find((x) => x.contentType === "embed");
 
-  console.log(textType, mediaType, embedType);
-
   //If there are images or videos in insert, split the data on this
   const datas = html.split(
-    /(<img[^>]*>|<video[^>]*><\/video>|<iframe[^>]*><\/iframe>)/
+    /(<h1[^>]*>[^<]*<\/h1>|<h2[^>]*>[^<]*<\/h2>|<h3[^>]*>[^<]*<\/h3>|<h4[^>]*>[^<]*<\/h4>|<h5[^>]*>[^<]*<\/h5>|<h6[^>]*>[^<]*<\/h6>|<img[^>]*>|<video[^>]*><\/video>|<iframe[^>]*><\/iframe>)/,
   );
 
   const p = datas
@@ -77,9 +74,26 @@ export const fromUnknownValue = (
             sectionData,
             areaData,
             sectionDefinition,
-            match
+            match,
           );
-        else pt = Promise.reject();
+        else pt = Promise.reject("No media type");
+      } else if (
+        match.startsWith("<h1") ||
+        match.startsWith("<h2") ||
+        match.startsWith("<h3") ||
+        match.startsWith("<h4") ||
+        match.startsWith("<h5") ||
+        match.startsWith("<h6")
+      ) {
+        if (titleType)
+          pt = createTitle(
+            titleType,
+            sectionData,
+            areaData,
+            sectionDefinition,
+            match,
+          );
+        else pt = Promise.reject("No title type");
       } else {
         if (embedType)
           pt = createEmbed(
@@ -87,42 +101,46 @@ export const fromUnknownValue = (
             sectionData,
             areaData,
             sectionDefinition,
-            match
+            match,
           );
-        else pt = Promise.reject();
+        else pt = Promise.reject("No embed type");
       }
-      pt = pt.catch(() => {
+      pt = pt.catch((e: any) => {
+        console.log("error", e);
         if (textType)
           return createBody(
             textType,
             sectionData,
             areaData,
             sectionDefinition,
-            match
-          );
+            match,
+          ).catch((e) => {
+            console.log("body error", e);
+            return { sectionData, areaData };
+          });
         else return { sectionData, areaData };
       });
 
       return pt.then(({ sectionData, areaData }) => {
-        sectionData.areas = [areaData];
+        //Skip empty areas
+        if (areaData.contents.length === 0) return undefined;
 
+        sectionData.areas = [areaData];
         return sectionData;
       });
     })
     .filter((x) => !!x)
     .map((x) => x!);
 
-  return Promise.all(p);
+  return Promise.all(p).then((x) => x.filter((x) => !!x).map((x) => x!));
 };
 
 const createBody = (
-  bodyType: AreaContentDefinitionType<{
-    src: string | undefined;
-  }>,
+  bodyType: AreaContentDefinitionType<{ src: string | undefined }>,
   sectionData: SectionType,
   areaData: AreaType,
   _sectionDefinition: SectionDefinition,
-  content: string
+  content: string,
 ): Promise<CreateReturn> => {
   let typedata = bodyType.create();
 
@@ -144,15 +162,53 @@ const createBody = (
       trimmed = trimmed.slice(0, -tag.length).trim();
     }
 
-    if (trimmed) {
-      const dataChunk = { src: trimmed };
-      typedata = bodyType!.onTypeChange?.(dataChunk) || dataChunk;
-      if (typedata.src) {
-        areaData.contents.push({
-          type: bodyType.type,
-          data: typedata,
-        });
-      }
+    trimmed = trimmed.trim();
+
+    const trimmedNoTags = stripForbiddenTags(trimmed).trim();
+
+    if (!trimmed || !trimmedNoTags) return Promise.reject("No content in body");
+
+    const dataChunk = { src: trimmed };
+    typedata = bodyType!.onTypeChange?.(dataChunk) || dataChunk;
+    if (typedata.src) {
+      areaData.contents.push({ type: bodyType.type, data: typedata });
+    }
+  }
+
+  return Promise.resolve({ sectionData, areaData });
+};
+
+const createTitle = (
+  titleType: AreaContentDefinitionType<{ src: string }>,
+  sectionData: SectionType,
+  areaData: AreaType,
+  _sectionDefinition: SectionDefinition,
+  content: string,
+): Promise<CreateReturn> => {
+  const dom = document.createElement("div");
+  dom.innerHTML = content;
+  let headerElem = dom.firstElementChild as Element;
+  if (
+    !headerElem ||
+    (headerElem.tagName.toLowerCase() !== "h1" &&
+      headerElem.tagName.toLowerCase() !== "h2" &&
+      headerElem.tagName.toLowerCase() !== "h3" &&
+      headerElem.tagName.toLowerCase() !== "h4" &&
+      headerElem.tagName.toLowerCase() !== "h5" &&
+      headerElem.tagName.toLowerCase() !== "h6")
+  )
+    return Promise.reject("Not a header");
+
+  headerElem = stripForbiddenStyles(stripForbiddenAttributes(headerElem));
+  const src = stripForbiddenTags(headerElem.innerHTML);
+
+  let typedata = titleType.create();
+
+  if (src) {
+    const dataChunk = { src };
+    typedata = titleType!.onTypeChange?.(dataChunk) || dataChunk;
+    if (typedata.src) {
+      areaData.contents.push({ type: titleType.type, data: typedata });
     }
   }
 
@@ -168,16 +224,17 @@ const createMedia = (
   sectionData: SectionType,
   areaData: AreaType,
   _sectionDefinition: SectionDefinition,
-  content: string
+  content: string,
 ): Promise<CreateReturn> => {
   const dom = document.createElement("div");
   dom.innerHTML = content;
   const img = dom.firstElementChild as HTMLImageElement;
-  if (!img || !img.src) return Promise.reject();
+  if (!img || !img.src) return Promise.reject("No image");
 
   const src = img.src;
 
-  if (!mediaType.onTypeValidate?.("url", src)) return Promise.reject();
+  if (!mediaType.onTypeValidate?.("url", src))
+    return Promise.reject("Invalid image src");
 
   return new Promise<DimensionType>((resolve) => {
     const image = document.createElement("img");
@@ -212,22 +269,19 @@ const createMedia = (
       sectionData.height =
         parseFloat(
           parseFloat(
-            ((typedata.height / typedata.width) * widthFraction).toString()
-          ).toFixed(7)
+            ((typedata.height / typedata.width) * widthFraction).toString(),
+          ).toFixed(7),
         ) * 100;
 
       const ratios = areaCalculateRatios(
         areaData.width,
         areaData.height,
-        sectionData.height
+        sectionData.height,
       );
       areaData.widthHeightRatio = ratios.widthHeightRatio;
       areaData.widthHeightRatioContent = ratios.widthHeightRatioContent;
 
-      areaData.contents.push({
-        type: mediaType.type,
-        data: typedata,
-      });
+      areaData.contents.push({ type: mediaType.type, data: typedata });
     })
     .then(() => ({ sectionData, areaData }));
 };
@@ -241,7 +295,7 @@ const createEmbed = (
   sectionData: SectionType,
   areaData: AreaType,
   _sectionDefinition: SectionDefinition,
-  content: string
+  content: string,
 ): Promise<CreateReturn> => {
   const dom = document.createElement("div");
   dom.innerHTML = content;
@@ -249,7 +303,8 @@ const createEmbed = (
   const iframe = !!first && first.tagName === "IFRAME" ? first : undefined;
   const src = iframe ? iframe.src : content;
 
-  if (!embedType.onTypeValidate?.("url", src)) return Promise.reject();
+  if (!embedType.onTypeValidate?.("url", src))
+    return Promise.reject("Invalid embed src");
 
   // areaData.types = [type];
   areaData.width = 100;
@@ -284,16 +339,13 @@ const createEmbed = (
       sectionData.height =
         parseFloat(
           parseFloat(
-            ((typedata.height / typedata.width) * widthFraction).toString()
-          ).toFixed(7)
+            ((typedata.height / typedata.width) * widthFraction).toString(),
+          ).toFixed(7),
         ) * 100;
     }
   }
 
-  areaData.contents.push({
-    type: embedType.type,
-    data: typedata,
-  });
+  areaData.contents.push({ type: embedType.type, data: typedata });
 
   return Promise.resolve({ sectionData: sectionData, areaData });
 };

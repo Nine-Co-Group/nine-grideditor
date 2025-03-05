@@ -33,7 +33,7 @@ export type AreaAndMetaType = {
 
 export type AreaContentDefinitionType<T extends ContentDataTypes> = {
   type: string;
-  contentType: "media" | "html" | "text" | "embed";
+  contentType: "media" | "html" | "text" | "title" | "embed";
   create(): T;
   onTypeValidate?(key: string, value: any): boolean;
   onTypeChange?(data: T): T;
@@ -43,7 +43,7 @@ export type AreaContentDefinitionType<T extends ContentDataTypes> = {
   htmlToData?(
     areaElem: HTMLElement,
     areaContentElem: HTMLElement,
-    widthHeightRatio?: number
+    widthHeightRatio?: number,
   ): T;
   onDrop?(data: object): Promise<T>;
   onFiles?(files: File[]): Promise<T[]>;
@@ -53,7 +53,7 @@ export type AreaContentTypeProp<T extends ContentDataTypes> =
   AreaContentDefinitionType<T> & {
     label: (props: AreaLabelProps<T>) => React.ReactNode;
     control?: (props: AreaControlsProps<T>) => React.ReactNode;
-    render: (props: AreaContentProps<T>) => JSX.Element;
+    render: (props: AreaContentProps<T>) => React.ReactNode;
   };
 
 export type AreaLabelProps<T extends ContentDataTypes> = {

@@ -19,7 +19,7 @@ const Remove = ({
   onRemove(area: AreaType): void;
   withIcon?: boolean;
   areaTypes: AreaContentDefinitionType<any>[];
-  children?: JSX.Element;
+  children?: React.ReactNode;
 }) => {
   const { formatMessage } = useIntl();
 
@@ -33,8 +33,8 @@ const Remove = ({
       .some(
         (config) =>
           config.warnOnRemove?.(
-            area.contents.find((x) => x.type === x.type)?.data
-          ) === true
+            area.contents.find((x) => x.type === x.type)?.data,
+          ) === true,
       );
 
     if (warnsOnRemove) {

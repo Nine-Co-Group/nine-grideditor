@@ -50,7 +50,7 @@ const getAreasAfterOrdered = (
   sections: SectionType[],
   sectionTypes: SectionDefinitionNamed,
   sectionOrder: number,
-  areaOrder: number
+  areaOrder: number,
 ) => {
   return sections
     .filter((x) => x.order >= sectionOrder)
@@ -63,7 +63,7 @@ const getAreasAfterOrdered = (
           (area, i) =>
             i + 1 <= areaCount &&
             (section.order > sectionOrder || area.order > areaOrder) &&
-            areaIsEmpty(area.contents)
+            areaIsEmpty(area.contents),
         )
         .sort((x, y) => (x.order < y.order ? -1 : 1));
     })
@@ -152,7 +152,7 @@ export const GridEditor = ({
 
   const setIsEmptyDebounced = useDebouncedCallback(
     (data: SectionType[]) => setIsEmpty(!data.some((x) => !sectionIsEmpty(x))),
-    500
+    500,
   );
 
   useEffect(() => {
@@ -167,19 +167,19 @@ export const GridEditor = ({
 
       if (_onChange) _onChange(data);
     },
-    [_onChange]
+    [_onChange],
   );
 
   const onChange = useCallback(
     (newData: SectionType[]) => {
       setDataFromInteraction(newData);
     },
-    [setDataFromInteraction]
+    [setDataFromInteraction],
   );
 
   const setAreasActiveIfChanged = useCallback((newAreasActive: number[]) => {
     setAreasActive((x) =>
-      isEqualValues(x, newAreasActive) ? x : newAreasActive
+      isEqualValues(x, newAreasActive) ? x : newAreasActive,
     );
   }, []);
 
@@ -197,22 +197,22 @@ export const GridEditor = ({
             .sort((x, y) => (x.order < y.order ? -1 : 1))
             .map((section) => {
               const sectionActiveAreas = section.areas.filter((x) =>
-                areasActive.includes(x.id)
+                areasActive.includes(x.id),
               );
 
               if (sectionActiveAreas.length > 0) {
                 if (section.order > sectionOrder) {
                   sectionOrder = section.order;
                   areaOrder = Math.max(
-                    ...sectionActiveAreas.map((x) => x.order)
+                    ...sectionActiveAreas.map((x) => x.order),
                   );
                 }
               }
 
               return sectionActiveAreas.sort((x, y) =>
-                x.order < y.order ? -1 : 1
+                x.order < y.order ? -1 : 1,
               );
-            })
+            }),
         );
 
         targetAreas = targetAreas.concat(activeAreasOrdered);
@@ -222,7 +222,7 @@ export const GridEditor = ({
         value,
         sectionTypes,
         sectionOrder,
-        areaOrder
+        areaOrder,
       );
 
       targetAreas = targetAreas.concat(possibleAreasNotActiveOrdered);
@@ -239,12 +239,12 @@ export const GridEditor = ({
         const dataIsArea = (datas as any).id !== undefined;
 
         let targetSection = changedSections.find((x) =>
-          x.areas.some((y) => y.id === targetArea.id)
+          x.areas.some((y) => y.id === targetArea.id),
         );
         let existsInChangedSections = true;
         if (!targetSection) {
           targetSection = value.find((x) =>
-            x.areas.some((y) => y.id === targetArea.id)
+            x.areas.some((y) => y.id === targetArea.id),
           );
           existsInChangedSections = false;
         }
@@ -261,12 +261,12 @@ export const GridEditor = ({
             areaTypes,
             targetArea,
             targetData.type,
-            targetData.data
+            targetData.data,
           );
         }
 
         const newAreas = targetSection.areas.map((x) =>
-          x.id === targetArea.id ? newArea : x
+          x.id === targetArea.id ? newArea : x,
         );
         const newSection = sectionGetAdjustedToAreas({
           ...targetSection,
@@ -275,7 +275,7 @@ export const GridEditor = ({
 
         if (existsInChangedSections) {
           changedSections = changedSections.map((x) =>
-            x.id === newSection.id ? newSection : x
+            x.id === newSection.id ? newSection : x,
           ) as SectionType[];
         } else {
           changedSections.push(newSection);
@@ -283,7 +283,7 @@ export const GridEditor = ({
       }
 
       const newData = value.map(
-        (x) => changedSections.find((y) => y.id === x.id) || x
+        (x) => changedSections.find((y) => y.id === x.id) || x,
       );
 
       let sectionMaxOrder =
@@ -300,7 +300,7 @@ export const GridEditor = ({
           sectionType,
           sectionDefinition,
           newData.length ? sectionMaxOrder + 1 : 0,
-          margin
+          margin,
         );
 
         let newArea: AreaType;
@@ -313,7 +313,7 @@ export const GridEditor = ({
             areaTypes,
             areaCreate(100, 100, 0, section),
             targetData.type,
-            targetData.data
+            targetData.data,
           );
         }
 
@@ -328,7 +328,7 @@ export const GridEditor = ({
 
       return newData;
     },
-    [margin, areasActive, value, sectionTypes, onChange, areaTypes]
+    [margin, areasActive, value, sectionTypes, onChange, areaTypes],
   );
 
   const onSomethingReceived = useCallback(
@@ -346,7 +346,7 @@ export const GridEditor = ({
                   .flat() as IncomingContent[];
 
                 return incoming;
-              }
+              },
             );
           }
           // else return areaDropToData(data, areaTypes).then((x) => [x]);
@@ -358,7 +358,7 @@ export const GridEditor = ({
 
       return await onContentsReceived(drops);
     },
-    [onContentsReceived, sectionTypes, areaTypes]
+    [onContentsReceived, sectionTypes, areaTypes],
   );
 
   useEffect(() => {
@@ -402,9 +402,9 @@ export const GridEditor = ({
             value.map((section) =>
               section.areas.filter(
                 (area) =>
-                  areasActive.includes(area.id) && !areaIsEmpty(area.contents)
-              )
-            )
+                  areasActive.includes(area.id) && !areaIsEmpty(area.contents),
+              ),
+            ),
           );
 
           setAreasCopied([...areasActiveNotEmpty]);
@@ -509,7 +509,7 @@ export const GridEditor = ({
       console.log("onDocumentClick", remainsActive);
       setAreasActiveIfChanged(remainsActive);
     },
-    [areasActive, setAreasActiveIfChanged, value]
+    [areasActive, setAreasActiveIfChanged, value],
   );
   useEffect(() => {
     let downTarget: Element | undefined = undefined;
@@ -565,7 +565,7 @@ export const GridEditor = ({
 
       setAreasActiveIfChanged(remainsActive);
     },
-    [value, areasActive, onChange, setAreasActiveIfChanged]
+    [value, areasActive, onChange, setAreasActiveIfChanged],
   );
 
   const onSectionChangeOrCreate = useCallback(
@@ -579,7 +579,7 @@ export const GridEditor = ({
         if (!old) {
           //Move all templates order +1 where bigger than or equal
           newSections = newSections.map((x) =>
-            x.order >= section.order ? { ...x, order: x.order + 1 } : x
+            x.order >= section.order ? { ...x, order: x.order + 1 } : x,
           );
 
           //Add new template
@@ -611,7 +611,7 @@ export const GridEditor = ({
               orderTemplate.order -= orderChangeFactor;
 
               newSections = newSections.filter(
-                (x) => x.id !== orderTemplate.id
+                (x) => x.id !== orderTemplate.id,
               );
 
               newSections.push(orderTemplate);
@@ -622,7 +622,7 @@ export const GridEditor = ({
 
       onChange(newSections);
     },
-    [value, onChange, areasActive, setAreasActiveIfChanged, sectionTypes]
+    [value, onChange, areasActive, setAreasActiveIfChanged, sectionTypes],
   );
 
   const showWarnOnRemove = useCallback(
@@ -634,11 +634,11 @@ export const GridEditor = ({
         .some(
           (config) =>
             config.warnOnRemove?.(
-              area.contents.find((x) => x.type === x.type)?.data
-            ) === true
+              area.contents.find((x) => x.type === x.type)?.data,
+            ) === true,
         );
     },
-    [areaTypes]
+    [areaTypes],
   );
 
   const onSectionRemove = useCallback(
@@ -656,30 +656,31 @@ export const GridEditor = ({
 
       console.log(
         "onSectionRemove",
-        areasActive.filter((x) => !sectionAreaIds.includes(x))
+        areasActive.filter((x) => !sectionAreaIds.includes(x)),
       );
       setAreasActiveIfChanged(
-        areasActive.filter((x) => !sectionAreaIds.includes(x))
+        areasActive.filter((x) => !sectionAreaIds.includes(x)),
       );
 
       onChange(newData);
     },
-    [value, onChange, areasActive, setAreasActiveIfChanged]
+    [value, onChange, areasActive, setAreasActiveIfChanged],
   );
 
   const checkAndRemoveSection = useCallback(
     (section: SectionType) => {
       const showWarning = section.areas.some((x) => showWarnOnRemove(x));
-      showWarning ? setSectionToRemove(section) : onSectionRemove(section);
+      if (showWarning) setSectionToRemove(section);
+      else onSectionRemove(section);
     },
-    [onSectionRemove, showWarnOnRemove]
+    [onSectionRemove, showWarnOnRemove],
   );
 
   const onAreaSwap = useCallback(
     (area1Id: number, area2Id: number): void => {
       const newData = value.map((x) => {
         const isAffected = x.areas.some(
-          (y) => y.id === area1Id || y.id === area2Id
+          (y) => y.id === area1Id || y.id === area2Id,
         );
         if (!isAffected) return x;
 
@@ -698,24 +699,19 @@ export const GridEditor = ({
           return y;
         });
 
-        const newSection = {
-          ...x,
-          areas: newAreas,
-        };
+        const newSection = { ...x, areas: newAreas };
 
         return sectionGetAdjustedToAreas(newSection);
       });
 
       onChange(newData);
     },
-    [value, onChange]
+    [value, onChange],
   );
 
   // const onInvalid = () => {
   //   setIsInvalid(true);
   // };
-
-  console.log("editor", areasActive);
 
   return (
     <>
@@ -731,11 +727,8 @@ export const GridEditor = ({
         ref={elem}
         className={classNames(
           "nge",
-          {
-            invalid: !!isInvalid && !!interacted,
-            empty: isEmpty,
-          },
-          className
+          { invalid: !!isInvalid && !!interacted, empty: isEmpty },
+          className,
         )}
       >
         <EditorContent

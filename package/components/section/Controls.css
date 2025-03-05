@@ -4,10 +4,11 @@
       visibility: visible;
       opacity: 1;
       height: auto;
+      display: flex;
     }
   }
 }
-@media (hover: hover) {
+/* @media (hover: hover) {
   .nge-section:hover {
     .nge-section-controls {
       visibility: visible;
@@ -15,7 +16,7 @@
       height: auto;
     }
   }
-}
+} */
 
 .nge-section:first-of-type {
   .nge-section-controls > .nge-section-tool-mover.up {
@@ -43,8 +44,13 @@
   justify-content: center;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  max-height: 100%;
+  gap: 0.5rem;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  display: none;
 
   > .nge-tool {
     background-color: transparent;

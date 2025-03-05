@@ -15,7 +15,7 @@ import { mergeRefs } from "../../../lib/mergeRefs";
 
 const isDomain = (string: string) =>
   /[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+/.test(
-    string.trim()
+    string.trim(),
   );
 
 const dateParse = (value: string) => {
@@ -60,10 +60,10 @@ export type Props = Omit<
     options?: InputOption[];
     suggestions?: InputOption[];
     errorMessage?: string;
-    label?: JSX.Element | string | number;
+    label?: React.ReactNode | string | number;
     labelClassName?: string;
     iconId?: IconId;
-    actions?: JSX.Element;
+    actions?: React.ReactNode;
     loading?: boolean;
   };
 
@@ -75,7 +75,7 @@ type InputOption = {
 
 const getValueAttribute = (
   value: string | number | Date | readonly string[] | undefined,
-  type: HTMLInputTypeAttribute | undefined
+  type: HTMLInputTypeAttribute | undefined,
 ): string | undefined => {
   if (type === "select" && value === undefined) return "";
 
@@ -127,7 +127,7 @@ const getValueAttribute = (
 };
 
 const getMultilineHeight = (
-  elem: HTMLInputElement | HTMLSelectElement | null
+  elem: HTMLInputElement | HTMLSelectElement | null,
 ) => {
   if (!elem) return 0;
 
@@ -195,7 +195,7 @@ const BaseInput = forwardRef<HTMLInputElement | HTMLSelectElement, Props>(
       loading,
       ...otherProps
     },
-    ref
+    ref,
   ) => {
     const hasExternalErrorMessage = _errorMessage !== undefined;
 
@@ -209,19 +209,19 @@ const BaseInput = forwardRef<HTMLInputElement | HTMLSelectElement, Props>(
 
     const [focus, setFocus] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string | undefined>(
-      undefined
+      undefined,
     );
 
     const isChecker =
       type === "checkbox" || type === "radio" || type === "toggle";
 
     const [hasBeenValidated, setHasBeenValidated] = useState(
-      hasExternalErrorMessage
+      hasExternalErrorMessage,
     );
 
     const [isMultiline, setIsMultiline] = useState(type === "textarea");
     const [multilineHeight, setMultilineHeight] = useState(
-      isMultiline && !!value ? getMultilineHeight(elem.current) : 0
+      isMultiline && !!value ? getMultilineHeight(elem.current) : 0,
     );
 
     const withLinebreaks = isMultiline && type === "textarea";
@@ -244,13 +244,13 @@ const BaseInput = forwardRef<HTMLInputElement | HTMLSelectElement, Props>(
       if (!isMultiline) return;
 
       setMultilineHeight(
-        isMultiline && !!value ? getMultilineHeight(elem.current) : 0
+        isMultiline && !!value ? getMultilineHeight(elem.current) : 0,
       );
     }, [isMultiline, value]);
 
     useLayoutEffect(() => {
       setHasBeenValidated((x) =>
-        x !== hasExternalErrorMessage ? hasExternalErrorMessage : x
+        x !== hasExternalErrorMessage ? hasExternalErrorMessage : x,
       );
     }, [hasExternalErrorMessage]);
 
@@ -297,7 +297,7 @@ const BaseInput = forwardRef<HTMLInputElement | HTMLSelectElement, Props>(
           if (_onInvalid) _onInvalid(e);
         }
       },
-      [onValidate, _onInvalid]
+      [onValidate, _onInvalid],
     );
 
     const onChangeDebounced = useDebouncedCallback(validateDebounced, 750);
@@ -375,7 +375,7 @@ const BaseInput = forwardRef<HTMLInputElement | HTMLSelectElement, Props>(
 
     const id = useMemo(
       () => _id || Math.random().toString().substring(2),
-      [_id]
+      [_id],
     );
 
     //True if this input should be grouped/styled as a normal text-input
@@ -399,8 +399,8 @@ const BaseInput = forwardRef<HTMLInputElement | HTMLSelectElement, Props>(
     const TagName: any = options
       ? "select"
       : isMultiline && (type === "text" || type === "textarea")
-      ? "textarea"
-      : "input";
+        ? "textarea"
+        : "input";
 
     const firstClassName = className ? className.split(" ")[0] : "";
 
@@ -411,12 +411,12 @@ const BaseInput = forwardRef<HTMLInputElement | HTMLSelectElement, Props>(
       type === "select"
         ? "arrow-down"
         : type === "date" || type === "month"
-        ? "calendar"
-        : type === "time" || type === "datetime-local"
-        ? "clock"
-        : type === "search" && !!value
-        ? "remove"
-        : _iconId;
+          ? "calendar"
+          : type === "time" || type === "datetime-local"
+            ? "clock"
+            : type === "search" && !!value
+              ? "remove"
+              : _iconId;
 
     const labelElem =
       label !== undefined || otherProps.children !== undefined ? (
@@ -464,7 +464,7 @@ const BaseInput = forwardRef<HTMLInputElement | HTMLSelectElement, Props>(
             ios,
             "has-icon": !!iconId,
           },
-          className
+          className,
         )}
         style={style}
       >
@@ -527,7 +527,7 @@ const BaseInput = forwardRef<HTMLInputElement | HTMLSelectElement, Props>(
         )}
       </div>
     );
-  }
+  },
 );
 
 export default BaseInput;

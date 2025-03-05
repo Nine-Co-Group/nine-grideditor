@@ -108,8 +108,12 @@ const Area = ({
     const isContentEditable =
       areaTypes
         .filter((x) => types.includes(x.type))
-        .filter((x) => x.contentType === "html" || x.contentType === "text")
-        .length > 0;
+        .filter(
+          (x) =>
+            x.contentType === "html" ||
+            x.contentType === "title" ||
+            x.contentType === "text",
+        ).length > 0;
 
     if (!isActive) activate();
 
@@ -185,8 +189,8 @@ const Area = ({
         .some(
           (config) =>
             config.warnOnRemove?.(
-              area.contents.find((x) => x.type === x.type)?.data
-            ) === true
+              area.contents.find((x) => x.type === x.type)?.data,
+            ) === true,
         );
 
       if (warnsOnRemove) {
@@ -237,7 +241,7 @@ const Area = ({
 
     datas.forEach(
       (data) =>
-        (newArea = addContentType(areaTypes, newArea, data.type, data.data))
+        (newArea = addContentType(areaTypes, newArea, data.type, data.data)),
     );
 
     console.log(datas);
@@ -272,7 +276,7 @@ const Area = ({
         newDimensionsResizeStart,
         newDimensionsResizeStartPx,
         changePx,
-        corner
+        corner,
       );
 
       if (_onResize) _onResize(area, corner, newDimensions);
@@ -283,7 +287,7 @@ const Area = ({
       dimensionsResizeStart,
       dimensionsResizeStartPx,
       changePx,
-      corner
+      corner,
     );
 
     if (_onResize) _onResize(area, corner, newDimensions);
@@ -293,7 +297,7 @@ const Area = ({
     dimensionsResizeStart: DimensionType,
     dimensionsResizeStartPx: DimensionType,
     changePx: CoordinateType,
-    corner: string
+    corner: string,
   ) => {
     //Moved distance in percent
     const change = {
@@ -339,7 +343,7 @@ const Area = ({
       areaTypes,
       area,
       type,
-      componentType!.onTypeChange?.(dataChunk) || dataChunk
+      componentType!.onTypeChange?.(dataChunk) || dataChunk,
     );
 
     if (onChange) onChange(newArea);
@@ -381,7 +385,7 @@ const Area = ({
             resizing: isResizing,
             // dragging: isDragging,
           },
-          className
+          className,
         )}
         data-type={typeNames.length > 0 ? typeNames.join("-") : undefined}
         style={{

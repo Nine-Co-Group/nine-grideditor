@@ -33,7 +33,8 @@
   --nge-inline-shadow: 0px 6px 1.5rem 4px
     oklch(var(--nge-shadow-color-oklch) / 10%);
 
-  --nge-border-radius: 1rem;
+  --nge-border-radius: 0.8rem;
+  --nge-border-radius-content: 0.2rem;
 
   --nge-color-oklch: var(--nge-color-dark-oklch);
   --nge-background-color-oklch: var(--nge-color-bright-oklch);

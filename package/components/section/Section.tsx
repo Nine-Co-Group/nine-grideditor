@@ -10,6 +10,7 @@ import {
 import { DimensionType } from "../../types";
 import { SectionDefinitionNamed, SectionRectRect, SectionType } from "./types";
 import {
+  isEmpty,
   setDimensions,
   getAreaCount,
   getTypeAreaMetas,
@@ -94,7 +95,7 @@ const SectionContent = ({
       const { width, height } = getDimensionsFitToAreas(
         [area],
         newSection.type,
-        newSection.data.margin
+        newSection.data.margin,
       );
 
       if (!!width || !!height) {
@@ -127,7 +128,7 @@ const SectionContent = ({
           : {
               ...areaCreate(x.width, x.height, x.order, section),
               id: x.id,
-            }
+            },
       ),
     };
 
@@ -170,7 +171,7 @@ const SectionContent = ({
 
       onChange(newSection);
     },
-    25
+    25,
   );
 
   const getColumnIds = (column: number): number[] => {
@@ -186,7 +187,7 @@ const SectionContent = ({
 
   const determineResizeParameters = (
     area: AreaType,
-    corner: string
+    corner: string,
   ): ResizeType => {
     const areasMeta = getTypeAreaMetas(sectionDefinition);
     const areaMeta = areasMeta.find((x) => x.order === area.order);
@@ -250,7 +251,7 @@ const SectionContent = ({
   const onAreaResize = (
     area: AreaType,
     corner: string,
-    newDimensions: DimensionType
+    newDimensions: DimensionType,
   ) => {
     onAreaResizeThrottled(area, corner, newDimensions);
     if (_onResizeChange) _onResizeChange(true);
@@ -299,7 +300,7 @@ const SectionContent = ({
               newWidth = same ? x.width + areaChange.x : x.width - areaChange.x;
               newWidth = Math.max(
                 MIN_SIZE,
-                Math.min(resizeParameters.size - MIN_SIZE, newWidth)
+                Math.min(resizeParameters.size - MIN_SIZE, newWidth),
               );
             } else if (resizeParameters.dimension === "vertical") {
               newHeight = same
@@ -307,7 +308,7 @@ const SectionContent = ({
                 : x.height - areaChange.y;
               newHeight = Math.max(
                 MIN_SIZE,
-                Math.min(resizeParameters.size - MIN_SIZE, newHeight)
+                Math.min(resizeParameters.size - MIN_SIZE, newHeight),
               );
             }
             const { widthHeightRatioContent, widthHeightRatio } =
@@ -326,7 +327,7 @@ const SectionContent = ({
 
       onChange(newSection);
     },
-    25
+    25,
   );
 
   const onAreaResizeEnd = () => {
@@ -363,13 +364,14 @@ const SectionContent = ({
   const withExpandablePicker =
     pointerActive === "coarse" && sectionDefinition.areas.length !== 1;
 
-  console.log("section", section.id, areasActive);
+  const _isEmpty = isEmpty(section);
 
   return (
     <div
       className={classNames("nge-section-content", {
         // "has-auto-height": hasAutoHeightArea(),
         "is-auto-height": isAutoHeight,
+        "is-empty": _isEmpty,
         resizing: isResizing,
       })}
       style={{
@@ -482,7 +484,7 @@ const Section = ({
   const isAutoHeight = hasAutoHeightOnly(
     section,
     sectionTypes[section.type]!,
-    areaTypes
+    areaTypes,
   );
 
   const hasAreaType =

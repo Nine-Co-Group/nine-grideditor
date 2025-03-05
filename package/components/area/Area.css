@@ -32,6 +32,15 @@
     overflow: hidden;
     width: 100%;
     height: 100%;
+    margin: 0;
+    padding: 0;
+
+    > p:first-child {
+      margin-top: 0;
+    }
+    > p:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &.is-top {
@@ -56,20 +65,23 @@
 
     &.is-empty {
       > .nge-area-content {
-        background-color: oklch(var(--nge-background-color-oklch));
-        outline-style: solid;
-        box-shadow: var(--nge-inline-shadow);
+        outline: var(--nge-border-width) dashed
+          oklch(var(--nge-border-color-oklch));
         align-items: center;
         justify-content: center;
       }
     }
 
     > .nge-area-content {
-      border-radius: var(--nge-border-radius);
-      outline: var(--nge-border-width) dashed
-        oklch(var(--nge-border-color-oklch));
-      background-color: oklch(var(--nge-background-color-oklch));
-      transition: outline-color 0.2s linear, background-color 0.2s linear,
+      /* border-radius: var(--nge-border-radius); */
+      /* outline: var(--nge-border-width) dashed
+        oklch(var(--nge-border-color-oklch)); */
+      /* background-color: oklch(var(--nge-background-color-oklch)); */
+      outline-color: oklch(var(--nge-border-color-oklch));
+      border-radius: var(--nge-border-radius-content);
+      transition:
+        outline-color 0.2s linear,
+        background-color 0.2s linear,
         box-shadow 0.2s linear;
       display: flex;
       flex-direction: column;
@@ -121,10 +133,9 @@
 @media (hover: hover) {
   .nge-section-content:not(.resizing) .nge-area {
     &.editable {
-      &:hover {
-        > .nge-area-content {
-          outline: 2px solid oklch(var(--nge-color-neutral-oklch)) !important;
-        }
+      &:hover:not(.active):not(.resizing) > .nge-area-content {
+        outline: var(--nge-border-width) dashed
+          oklch(var(--nge-border-color-oklch)) !important;
       }
     }
   }

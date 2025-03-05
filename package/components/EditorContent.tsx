@@ -9,6 +9,7 @@ import Section, {
   SectionRectRect,
   SectionType,
   hasAutoHeightOnly,
+  isEmpty,
 } from "./section";
 import { AreaContentTypeProp, AreaType, IncomingContent } from "./area";
 import { getScrollOffsetParents } from "../lib/dom";
@@ -136,8 +137,13 @@ const EditorContent = ({
     >
       {sections
         .sort((x, y) => (x.order < y.order ? -1 : 1))
-        .map((section) => {
+        .map((section, i) => {
           const rect = sectionsRect.find((y) => y.id === section.id);
+
+          const _isEmpty = isEmpty(section);
+
+          const previousSection = sections[i - 1];
+          const previousIsEmpty = !previousSection || isEmpty(previousSection);
 
           return (
             <EditorSection
@@ -154,12 +160,12 @@ const EditorContent = ({
               designAreaMargin={margin}
               onAreaActiveChange={onAreaActiveChange}
               areasActive={areasActive.filter((x) =>
-                section.areas.some((y) => y.id === x)
+                section.areas.some((y) => y.id === x),
               )}
               rect={rect ? rect.rect : undefined}
               sectionTypes={sectionTypes}
               areaTypes={areaTypes}
-              withCreateArea={sections.length > 1}
+              withCreateArea={!_isEmpty && !previousIsEmpty}
             />
           );
         })}
@@ -218,7 +224,7 @@ const EditorSection = ({
   const isAutoHeight = hasAutoHeightOnly(
     section,
     sectionTypes[section.type]!,
-    areaTypes
+    areaTypes,
   );
 
   return (

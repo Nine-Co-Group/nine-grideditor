@@ -81,7 +81,7 @@ const CreateArea = ({
             contents: [],
           },
           data.type,
-          data.data
+          data.data,
         );
 
         const newSection = {
@@ -90,7 +90,7 @@ const CreateArea = ({
             sectionTypes[type || Object.keys(sectionTypes)[0]!]!,
             order,
             designAreaMargin,
-            [newArea]
+            [newArea],
           ),
           order: order,
         };
@@ -100,8 +100,6 @@ const CreateArea = ({
         //Run this after document click has bubbled
         if (results.length === 1)
           onAreaActiveChange(newSection.areas[0]!, true);
-        // setTimeout(() => {
-        // }, 1);
       }
 
       if (isIncomingArea) {
@@ -110,7 +108,7 @@ const CreateArea = ({
             type || Object.keys(sectionTypes)[0]!,
             sectionTypes[type || Object.keys(sectionTypes)[0]!]!,
             order,
-            designAreaMargin
+            designAreaMargin,
           ),
           order: order,
         };
@@ -124,6 +122,8 @@ const CreateArea = ({
     }
   };
 
+  const [isHover, setIsHover] = useState(false);
+
   return (
     <Create
       className={classNames(
@@ -131,8 +131,9 @@ const CreateArea = ({
         {
           loading: isLoading,
           dropping: isDropping,
+          hover: isHover,
         },
-        className
+        className,
       )}
       style={{
         marginTop: designAreaMargin / 2 + "rem",
@@ -147,6 +148,9 @@ const CreateArea = ({
       onCreate={onCreate}
       sectionTypes={sectionTypes}
       designAreaMargin={designAreaMargin}
+      // Detect hover
+      onPointerEnter={() => setIsHover(true)}
+      onPointerLeave={() => setIsHover(false)}
       // dropzone=""
       {...otherProps}
     >
