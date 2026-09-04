@@ -91,14 +91,7 @@ const html =
   "<body>\n<h1>Campaign brief for Nine Agency</h1><p><strong>Campaign:</strong>&nbsp;Nine Agency</p><p><strong>Campaign period:&nbsp;</strong>Start Date - End Date</p><p><strong>Activations:&nbsp;</strong>Influencer Partnerships</p><p><strong>Campaign goals:</strong></p><ul>    <li>        <p>Increase brand awareness through influencer partnerships' audiences.</p>    </li>    <li>        <p>Drive traffic to link in bio (specify website, landing page, etc.)</p>    </li></ul><p><strong>Brand Messaging:</strong> Nine Agency stands for innovative marketing solutions, expert insights, and exceptional customer service. Our unique selling propositions (USPs) are our data-driven strategies and tailored campaigns that meet the unique needs of our clients.</p><h2>Information about Nine Agency</h2><p><em>Our target audience should get enlightened about our comprehensive marketing services, including social media management, content creation, and performance analytics.</em></p><h2>Content requirements</h2><ul>    <li>        <p>Both influencer and Nine Agency branding must be included in the content.</p>    </li>    <li>        <p>Brand elements should be clearly visible and communicated about in the content. The branding cannot be hidden behind other objects or edited to look different from real-life perspective.</p>    </li>    <li>        <p>All content must be high quality, shot in 1920x1080p resolution or higher, and in color.</p>    </li>    <li>        <p>The influencer is responsible for creating content that follows the guidelines from the briefing. The influencer has the obligation to correct the material if info is missing/incorrect. During publishing, all content should be corrected through draft and in line with briefing. (Content should not have to be taken down)</p>    </li>    <li>        <p>Drafts must be sent to the responsible at Nine Agency for approval before publishing.</p>    </li>    <li>        <p>Content must be original and not infringe on any third-party rights (trademarks, music, etc.).</p>    </li>    <li>        <p>Content must not include political information or use private hashtags.</p>    </li>    <li>        <p>All content must be marked as Paid Partnership with @NineAgency.</p>    </li></ul></body>";
 
 const App = () => {
-  const someValue: any = React.useMemo(
-    () =>
-      // [] ||
-      html ||
-      '<p>asdasdasdas</p><h2 style="color:red">Title text goes here</h2>' ||
-      [],
-    [],
-  );
+  const someValue: any = React.useMemo(() => html, []);
   const isUnknown = isUnknownValue(someValue);
 
   const [valueIsLoading, setIsLoadingData] = React.useState(isUnknown);

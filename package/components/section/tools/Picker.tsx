@@ -17,7 +17,10 @@ const SectionPicker = ({
   className?: string;
   sectionTypes: SectionDefinitionNamed;
 }) => {
-  const typesArray = useMemo(() => Object.entries(sectionTypes), []);
+  const typesArray = useMemo(
+    () => Object.entries(sectionTypes),
+    [sectionTypes],
+  );
 
   const onChange = (type: string) => {
     const newSection = {
@@ -27,7 +30,7 @@ const SectionPicker = ({
         sectionTypes[type]!,
         section.order,
         section.data.margin,
-        section.areas
+        section.areas,
       ),
       id: section.id,
     };
@@ -46,7 +49,7 @@ const SectionPicker = ({
         const height = type.height; //Math.min(60, type.height) : 60;
 
         const paddingTop = parseFloat(
-          (height * (width / 100)).toString()
+          (height * (width / 100)).toString(),
         ).toFixed(4);
 
         return (
